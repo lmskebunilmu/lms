@@ -51,7 +51,36 @@ return;
 }
 
 await loadLayout("student");
+await loadLayout("student");
 
+// FIX PATH COMPONENT
+const headerContainer =
+document.getElementById("header-container");
+
+const sidebarContainer =
+document.getElementById("sidebar-container");
+
+if (headerContainer) {
+
+  const headerRes = await fetch(
+    "../../components/header.html"
+  );
+
+  headerContainer.innerHTML =
+  await headerRes.text();
+
+}
+
+if (sidebarContainer) {
+
+  const sidebarRes = await fetch(
+    "../../components/sidebar-student.html"
+  );
+
+  sidebarContainer.innerHTML =
+  await sidebarRes.text();
+
+}
 
 const userSnap =
 await getDoc(
