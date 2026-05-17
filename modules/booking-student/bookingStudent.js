@@ -102,7 +102,7 @@ setTimeout(() => {
   // NAMA SEKOLAH (kalau mau sekalian)
   const schoolName = document.getElementById("headerSchoolName");
   if (schoolName) {
-    schoolName.innerText = "Kebun Ilmu Matematika";
+    schoolName.innerText = "Kebun Ilmu";
   }
 
   // AVATAR USER (opsional override)
