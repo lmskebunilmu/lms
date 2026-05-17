@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Booking Teacher</title>
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+
+<style>
+
+.booking-wrapper{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.06);
+margin-top:20px;
+}
+
+.form-group{
+display:flex;
+flex-direction:column;
+margin-bottom:18px;
+}
+
+.form-group label{
+font-size:14px;
+font-weight:600;
+margin-bottom:8px;
+color:#0f172a;
+}
+
+.form-group select,
+.form-group input{
+padding:14px;
+border-radius:12px;
+border:1px solid #d1d5db;
+font-size:14px;
+outline:none;
+}
+
+.form-group select:focus,
+.form-group input:focus{
+border-color:#2563eb;
+}
+
+.teacher-info{
+margin-top:20px;
+padding:20px;
+border-radius:18px;
+background:#f8fafc;
+border:1px solid #e2e8f0;
+}
+
+.teacher-name{
+font-size:20px;
+font-weight:700;
+color:#0f172a;
+margin-bottom:8px;
+}
+
+.teacher-detail{
+font-size:14px;
+color:#475569;
+margin-bottom:6px;
+}
+
+.btn-book{
+margin-top:20px;
+width:100%;
+padding:14px;
+border:none;
+border-radius:14px;
+background:linear-gradient(135deg,#2563eb,#3b82f6);
+color:white;
+font-size:15px;
+font-weight:700;
+cursor:pointer;
+}
+
+.table-wrapper{
+margin-top:20px;
+overflow:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+table th,
+table td{
+padding:14px;
+border-bottom:1px solid #e5e7eb;
+text-align:left;
+}
+
+table th{
+background:#2563eb;
+color:white;
+}
+
+.badge{
+display:inline-block;
+padding:6px 12px;
+border-radius:999px;
+font-size:12px;
+font-weight:700;
+}
+
+.badge-pending{
+background:#fef3c7;
+color:#92400e;
+}
+
+.badge-approved{
+background:#dcfce7;
+color:#166534;
+}
+
+.badge-rejected{
+background:#fee2e2;
+color:#991b1b;
+}
+
+.empty-state{
+padding:20px;
+text-align:center;
+color:#64748b;
+}
+
+.my-booking-section{
+margin-top:25px;
+margin-bottom:30px;
+padding:22px;
+border-radius:20px;
+background:#f8fafc;
+border:1px solid #e2e8f0;
+}
+
+.section-title{
+font-size:20px;
+font-weight:700;
+margin-bottom:18px;
+color:#0f172a;
+}
+
+.booking-history-list{
+display:flex;
+flex-direction:column;
+gap:14px;
+}
+
+.booking-history-item{
+background:white;
+border:1px solid #e2e8f0;
+border-radius:16px;
+padding:18px;
+}
+
+.booking-history-top{
+display:flex;
+justify-content:space-between;
+gap:15px;
+flex-wrap:wrap;
+margin-bottom:10px;
+}
+
+.booking-history-name{
+font-size:17px;
+font-weight:700;
+color:#111827;
+}
+
+.booking-history-subject{
+font-size:14px;
+color:#475569;
+margin-top:4px;
+}
+
+.booking-history-detail{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:10px;
+margin-top:10px;
+}
+
+.booking-detail-box{
+padding:12px;
+border-radius:12px;
+background:#f8fafc;
+font-size:14px;
+border:1px solid #e2e8f0;
+}
+
+@media(max-width:768px){
+
+table{
+min-width:700px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div id="sidebar-container"></div>
+
+<div class="main">
+
+<div id="header-container"></div>
+
+<!-- JADWAL -->
+<div class="card">
+
+<div class="my-booking-section">
+
+<h3 class="section-title">
+📚 Jadwal Kelas Saya
+</h3>
+
+<div id="myBookingList">
+
+<div class="empty-state">
+Belum ada jadwal kelas
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- BOOKING -->
+<div class="card">
+
+<h2>📅 Booking Teacher</h2>
+
+<p>
+Booking teacher berdasarkan subject dan sesi
+</p>
+
+<div class="booking-wrapper">
+
+<div class="form-group">
+
+<label>Pilih Subject</label>
+
+<select id="subjectSelect">
+
+<option value="">
+Pilih Subject
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Pilih Tanggal</label>
+
+<input type="date" id="bookingDate">
+
+</div>
+
+<div class="form-group">
+
+<label>Hari</label>
+
+<input type="text" id="selectedDay" readonly>
+
+</div>
+
+<div class="form-group">
+
+<label>Pilih Sesi</label>
+
+<select id="sessionSelect">
+
+<option value="">
+Pilih Sesi
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Pilih Teacher</label>
+
+<select id="teacherSelect">
+
+<option value="">
+Pilih Teacher
+</option>
+
+</select>
+
+</div>
+
+<div id="teacherInfo"></div>
+
+<button
+class="btn-book"
+onclick="bookTeacher()"
+>
+Booking Sekarang
+</button>
+
+</div>
+
+</div>
+
+<!-- HISTORY -->
+<div class="card" style="margin-top:20px;">
+
+<h2>📚 Riwayat Booking</h2>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Teacher</th>
+<th>Subject</th>
+<th>Tanggal</th>
+<th>Sesi</th>
+<th>Status</th>
+</tr>
+
+</thead>
+
+<tbody id="myBookingTable">
+
+<tr>
+<td colspan="5" style="text-align:center;">
+Loading...
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="./bookingStudent.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Kelola Latihan</title>
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)'], ['$', '$']]
+    }
+  };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar-container"></div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div id="header-container"></div>
+
+    <!-- TOP BAR -->
+    <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+      <h2 id="materialTitle">Daftar Latihan</h2>
+
+      <button class="primary" onclick="goBackMaterials()">
+        ⬅ Kembali
+      </button>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="card">
+
+      <button class="primary" onclick="createExercise()">
+        ➕ Buat Latihan
+      </button>
+
+      <div id="exerciseList" style="margin-top:15px;"></div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ========================= -->
+<!-- MODAL VIEW SOAL -->
+<!-- ========================= -->
+<div id="viewQuestionsModal" class="modal">
+  <div class="modal-content" style="max-width:800px;">
+
+    <h3>Daftar Soal</h3>
+
+    <div id="questionsContainer" style="margin-top:15px;"></div>
+
+    <div class="modal-actions">
+      <button class="primary" onclick="closeQuestionsModal()">Tutup</button>
+    </div>
+
+  </div>
+</div>
+
+<script type="module" src="exercise.js"></script>
+
+</body>
+</html>

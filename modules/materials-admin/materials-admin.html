@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Materi Sekolah</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+</head>
+
+<body>
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar-container"></div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div id="header-container"></div>
+
+    <div class="card">
+
+      <h3>Materi Tersedia</h3>
+
+<!-- 🔥 SELECT MAPEL -->
+<div style="margin-bottom:15px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+  <select id="subjectSelect"></select>
+
+  <button class="primary" onclick="approveSubject()">
+    ✔ Aktifkan Mapel
+  </button>
+</div>
+
+<div id="activeSubjects" style="margin-bottom:15px;"></div>
+
+<!-- SEARCH -->
+<input type="text" id="searchMaterial"
+  placeholder="Cari materi..."
+  oninput="filterMaterials()">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Judul</th>
+      <th>Mapel</th>
+      <th>Level</th>
+      <th>Kurikulum</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody id="materialList"></tbody>
+</table>
+
+    </div>
+
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script type="module" src="./materials-admin.js"></script>
+</body>
+</html>

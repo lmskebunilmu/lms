@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kelola Mata Pelajaran</title>
+</head>
+
+<body>
+
+<h1>Kelola Mata Pelajaran</h1>
+
+<hr>
+
+<h3>Tambah Mata Pelajaran</h3>
+
+<input type="text"
+       id="subjectName"
+       placeholder="Nama Mapel (contoh: Matematika)">
+
+<br><br>
+
+<input type="text"
+       id="schoolId"
+       placeholder="School ID (contoh: SDKI)">
+
+<br><br>
+
+<button onclick="addSubject()">
+Tambah Mata Pelajaran
+</button>
+
+<hr>
+
+<h3>Daftar Mata Pelajaran</h3>
+
+<ul id="subjectList"></ul>
+
+<br>
+
+<button onclick="backDashboard()">
+Kembali Dashboard
+</button>
+
+<script type="module"
+        src="subjects.js">
+</script>
+
+</body>
+</html>

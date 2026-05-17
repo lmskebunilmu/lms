@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Data Guru</title>
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+<style>
+    .checkbox-group{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:10px;
+margin-bottom:15px;
+}
+
+.checkbox-group label{
+display:flex;
+align-items:center;
+gap:6px;
+padding:10px 14px;
+border:1px solid #ddd;
+border-radius:10px;
+cursor:pointer;
+background:#fafafa;
+transition:0.2s;
+font-size:14px;
+}
+
+.checkbox-group label:hover{
+background:#f0f0f0;
+}
+
+.checkbox-group input[type="checkbox"]{
+width:16px;
+height:16px;
+cursor:pointer;
+}
+
+.form-group{
+margin-top:15px;
+}
+
+.form-group label{
+font-weight:600;
+display:block;
+margin-bottom:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div id="sidebar-container"></div>
+
+<div class="main">
+
+<div id="header-container"></div>
+
+<div class="card">
+
+<h1>Data Guru</h1>
+
+<button class="btn-add" onclick="openTeacherModal()">➕ Tambah Guru</button>
+<button class="btn-export" onclick="exportTeachersExcel()">💾 Export Excel</button>
+
+<input type="text" id="teacherSearch" placeholder="🔍 Cari guru...">
+
+<table>
+<thead>
+<tr>
+<th>Nama Guru</th>
+<th>Subject</th>
+<th>Level</th>
+<th>Kurikulum</th>
+<th>Aksi</th>
+</tr>
+</thead>
+
+<tbody id="teacherTable"></tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+<!-- MODAL TEACHER -->
+<div id="teacherModal" class="modal">
+
+<div class="modal-content">
+
+<h3 id="teacherModalTitle">Tambah Guru</h3>
+
+<input type="hidden" id="teacherId">
+
+<input
+type="text"
+id="teacherName"
+placeholder="Nama Guru">
+
+<input
+type="email"
+id="teacherEmail"
+placeholder="Email Guru">
+
+<input
+type="password"
+id="teacherPassword"
+placeholder="Password Guru">
+
+<!-- SUBJECT -->
+<div class="form-group">
+
+<label>📚 Subject</label>
+
+<div class="checkbox-group" id="subjectGroup">
+
+
+
+</div>
+
+</div>
+
+<!-- LEVEL -->
+<div class="form-group">
+
+<label>🎓 Level</label>
+
+<div class="checkbox-group" id="levelGroup">
+
+
+
+</div>
+
+</div>
+
+<!-- KURIKULUM -->
+<div class="form-group">
+
+<label>🌐 Kurikulum</label>
+
+<div class="checkbox-group" id="curriculumGroup">
+
+
+
+</div>
+
+</div>
+
+<div class="modal-actions">
+
+<button class="primary"
+onclick="saveTeacher()">
+Simpan
+</button>
+
+<button class="danger"
+onclick="closeTeacherModal()">
+Batal
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
+<script type="module" src="./teachers.js"></script>
+
+</body>
+</html>

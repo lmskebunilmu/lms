@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kelola Kelas</title>
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
+</head>
+<style>
+
+    .btn-manage{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:600;
+  transition:0.2s;
+}
+
+.btn-manage:hover{
+  background:#1d4ed8;
+  transform:translateY(-1px);
+}
+
+.btn-manage:active{
+  transform:scale(0.98);
+}
+    .item{
+  padding:8px;
+  margin:5px 0;
+  background:#f3f4f6;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.item:hover{
+  background:#e5e7eb;
+}
+    </style>
+<body>
+
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar-container"></div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div id="header-container"></div>
+
+    <!-- BUTTON -->
+    <div class="card">
+
+      <button
+        class="primary"
+        onclick="showAddForm()"
+      >
+        ➕ Buat Kelas
+      </button>
+
+    </div>
+
+    <!-- LIST -->
+    <div class="card">
+
+      <h3>🏫 Daftar Kelas</h3>
+
+      <input
+        type="text"
+        id="searchClass"
+        placeholder="Cari kelas..."
+        oninput="filterClasses()"
+      >
+
+      <ul id="classList"></ul>
+
+    </div>
+
+    <!-- TRANSAKSI -->
+<div class="card">
+
+  <h3>💳 Transaksi Pembayaran</h3>
+
+  <div id="transactionList">
+    Loading...
+  </div>
+
+</div>
+
+
+
+    <!-- MODAL -->
+    <div id="classModal" class="modal">
+
+      <div class="modal-content">
+
+        <h3 id="formTitle">
+          Tambah Kelas
+        </h3>
+
+        <!-- NAMA -->
+        <input
+          type="text"
+          id="className"
+          placeholder="Nama Kelas"
+        >
+
+        <!-- LEVEL -->
+        <select id="level">
+
+          <option value="">
+            Pilih Level
+          </option>
+
+          <option value="SD">
+            SD
+          </option>
+
+          <option value="SMP">
+            SMP
+          </option>
+
+          <option value="SMA">
+            SMA
+          </option>
+
+        </select>
+
+        <!-- KURIKULUM -->
+        <select id="curriculum">
+
+          <option value="">
+            Pilih Kurikulum
+          </option>
+
+          <option value="Nasional">
+            Nasional
+          </option>
+
+          <option value="Internasional">
+            Internasional
+          </option>
+
+        </select>
+
+        <!-- SUBJECT -->
+        <select id="subject">
+
+          <option value="">
+            Pilih Subject
+          </option>
+
+        </select>
+<!-- THUMBNAIL -->
+<input
+  type="file"
+  id="classThumbnail"
+  accept="image/*"
+/>
+ <div id="pricingContainer">
+
+  <div class="pricing-item">
+
+    <select class="billingPeriod">
+
+      <option value="30">
+        1 Bulan
+      </option>
+
+      <option value="90">
+        3 Bulan
+      </option>
+
+      <option value="180">
+        6 Bulan
+      </option>
+
+      <option value="365">
+        12 Bulan
+      </option>
+
+    </select>
+
+    <input
+      type="number"
+      class="priceInput"
+      placeholder="Harga"
+    >
+
+  </div>
+
+</div>
+
+<button
+  type="button"
+  class="primary"
+  onclick="addPricingRow()"
+  style="margin-top:10px;"
+>
+  ➕ Tambah Paket
+</button>
+<label style="display:flex;gap:10px;margin-top:10px;">
+  <input type="checkbox" id="isPaid">
+  Kelas Berbayar
+</label>
+
+        <!-- ACTION -->
+        <div class="modal-actions">
+
+          <button
+            class="primary"
+            onclick="saveClass()"
+          >
+            Simpan
+          </button>
+
+          <button
+            class="danger"
+            onclick="closeForm()"
+          >
+            Batal
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- MANAGE MODAL -->
+<div id="manageModal" class="modal">
+
+  <div
+    class="modal-content"
+    style="
+      width:95%;
+      max-width:1000px;
+      max-height:90vh;
+      overflow:auto;
+    "
+  >
+
+    <h2 id="manageTitle">
+      Kelola Kelas
+    </h2>
+
+    <!-- CONTENT -->
+    <div id="manageContent"></div>
+
+    <div class="modal-actions">
+
+      <button
+        class="danger"
+        onclick="closeManageModal()"
+      >
+        Tutup
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- STUDENT MODAL -->
+<div id="studentModal" class="modal">
+
+  <div
+    class="modal-content"
+    style="
+      width:95%;
+      max-width:900px;
+      max-height:90vh;
+      overflow:auto;
+    "
+  >
+
+    <h2 id="studentTitle">
+      Kelola Siswa
+    </h2>
+
+    <input
+      type="text"
+      id="searchStudent"
+      placeholder="Cari siswa..."
+      style="margin-bottom:15px;"
+    >
+
+    <!-- LIST SISWA -->
+    <div id="studentList"></div>
+
+    <hr style="margin:20px 0;">
+
+    <h3>➕ Tambah Siswa</h3>
+
+    <div id="availableStudentList"></div>
+
+    <div class="modal-actions">
+
+      <button
+        class="danger"
+        onclick="closeStudentModal()"
+      >
+        Tutup
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+    <!-- TOAST -->
+    <div id="toast" class="toast"></div>
+
+  </div>
+</div>
+
+<!-- LOAD LAYOUT -->
+<script type="module">
+
+import { loadLayout }
+from "../../assets/js/components.js";
+
+loadLayout("superadmin");
+
+</script>
+
+<!-- JS -->
+<script
+type="module"
+src="./classessuperadmin.js">
+</script>
+<script
+  src="https://app.sandbox.midtrans.com/snap/snap.js"
+  data-client-key="MIDTRANS_CLIENT_KEY">
+</script>
+</body>
+</html>

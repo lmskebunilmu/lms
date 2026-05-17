@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Kelola Sekolah</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar-container"></div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div id="header-container"></div>
+
+    <!-- TOMBOL TAMBAH -->
+    <div class="card">
+      <button class="primary" onclick="showAddForm()">➕ Tambah Sekolah</button>
+    </div>
+
+    <!-- DAFTAR SEKOLAH -->
+    <div class="card">
+      <h3>Daftar Sekolah</h3>
+      <input type="text" id="searchSchool" placeholder="Cari sekolah..." oninput="filterSchools()">
+      <ul id="schoolList"></ul>
+
+      <!-- PAGINATION -->
+      <div style="display:flex;gap:10px;margin-top:12px;">
+        <button class="primary" onclick="prevPage()">⬅ Sebelumnya</button>
+        <button class="primary" onclick="nextPage()">➡ Berikutnya</button>
+      </div>
+    </div>
+
+    <!-- MODAL FORM -->
+    <div id="schoolModal" class="modal">
+      <div class="modal-content">
+        <h3 id="formTitle">Tambah Sekolah</h3>
+        <input type="text" id="schoolName" placeholder="Nama Sekolah">
+        <input type="text" id="schoolCode" placeholder="Kode Sekolah">
+        <label>Jenjang Sekolah</label>
+<select id="level">
+  <option value="SD">SD</option>
+  <option value="SMP">SMP</option>
+  <option value="SMA">SMA</option>
+</select>
+
+<label>Kurikulum</label>
+<select id="curriculum">
+  <option value="Nasional">Nasional</option>
+  <option value="Internasional">Internasional</option>
+</select>
+<label>Daftar Mata Pelajaran</label>
+<div id="subjectsCheckboxList" class="subjects-checkbox-list"></div>
+        <input type="file" id="schoolLogoFile" accept="image/*">
+        <div class="modal-actions">
+          <button class="primary" onclick="saveSchool()">Simpan</button>
+          <button class="danger" onclick="closeForm()">Batal</button>
+        </div>
+      </div>
+    </div>
+<!-- MODAL DELETE SEKOLAH -->
+<div id="deleteSchoolModal" class="modal">
+  <div class="modal-content">
+    <p id="deleteSchoolMessage">Yakin ingin menghapus sekolah ini?</p>
+    <div class="modal-actions">
+      <button id="deleteSchoolYes" class="btn-warning">Ya</button>
+      <button id="deleteSchoolNo" class="btn-danger">Tidak</button>
+    </div>
+  </div>
+</div>
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast"></div>
+
+  </div>
+</div>
+
+
+<!-- MODULE -->
+<script type="module" src="schools.js"></script>
+</html>

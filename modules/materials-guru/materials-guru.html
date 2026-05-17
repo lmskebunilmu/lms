@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Materi Guru</title>
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+
+</head>
+
+<body>
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar-container"></div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div id="header-container"></div>
+
+    <div class="card">
+
+      <h3>Pilih Materi untuk Kelas</h3>
+
+      <!-- PILIH KELAS -->
+      <select id="classSelect"></select>
+
+      <select id="subjectFilter" onchange="filterBySubject()">
+  <option value="">Semua Mapel</option>
+</select>
+
+      <!-- SEARCH -->
+      <input 
+        type="text"
+        id="searchMaterialGuru"
+        placeholder="Cari materi..."
+        oninput="filterMaterialsGuru()"
+      >
+
+      <!-- LIST -->
+      <div id="materialGuruList" class="material-container"></div>
+
+    </div>
+
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script type="module" src="./materials-guru.js"></script>
+</body>
+</html>

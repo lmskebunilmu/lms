@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Absensi Siswa Guru</title>
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+
+<style>
+.student-card{
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:15px;
+  margin-bottom:15px;
+  background:#fff;
+}
+
+.student-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.student-name{
+  font-weight:bold;
+  font-size:16px;
+}
+
+.status-group{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+
+.status-btn{
+  padding:8px 14px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.status-btn.active{
+  color:#fff;
+}
+
+.hadir.active{
+  background:#16a34a;
+}
+
+.izin.active{
+  background:#f59e0b;
+}
+
+.sakit.active{
+  background:#3b82f6;
+}
+
+.alpha.active{
+  background:#ef4444;
+}
+
+textarea{
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+.absen-header{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+
+.absen-header input,
+.absen-header select{
+  padding:10px;
+}
+
+.save-btn{
+  margin-top:20px;
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#2563eb;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar-container"></div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div id="header-container"></div>
+
+    <div class="card">
+
+      <h2>Absensi Siswa</h2>
+
+      <div class="absen-header">
+
+  <select id="classSelect"></select>
+
+  <select id="subjectSelect"></select>
+
+  <input type="date" id="attendanceDate">
+
+</div>
+
+
+      <div id="studentList"></div>
+
+      <button class="save-btn" onclick="saveAttendance()">
+        💾 Simpan Absensi
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script type="module" src="./attendance.js"></script>
+
+</body>
+</html>

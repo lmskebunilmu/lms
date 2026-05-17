@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Data Guru</title>
+
+<link rel="stylesheet"
+href="../../assets/css/style.css">
+
+<link rel="stylesheet"
+href="../../assets/css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- SIDEBAR -->
+<div id="sidebar-container"></div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- HEADER -->
+<div id="header-container"></div>
+
+<div class="card">
+
+<h1>Data Guru</h1>
+
+
+<div style="margin-bottom:12px; display:flex; justify-content:flex-start; gap:6px; align-items:center;">
+  <input 
+    type="text" 
+    id="teacherSearch" 
+    placeholder="Cari guru berdasarkan nama, email, atau mapel..." 
+    class="ts-control"
+    style="max-width:320px;"
+  >
+  <button class="btn-export" onclick="exportTeachersToExcel()">Export CSV</button>
+  <button class="btn-export" onclick="exportTeachersToPDF()">Export PDF</button>
+  <button
+class="btn-add"
+onclick="openTeacherModal()">
+
+➕ Tambah Guru
+
+</button>
+
+</div>
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Nama</th>
+      <th>Email</th>
+      <th>Mapel</th>
+      <th>Status</th>
+      <th>Aksi</th>
+</tr>
+
+</thead>
+
+<tbody id="teacherTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ========================= -->
+<!-- MODAL GURU -->
+<!-- ========================= -->
+
+<div id="teacherModal" class="modal">
+
+<div class="modal-content">
+
+<h3>Tambah / Edit Guru</h3>
+
+<input type="hidden" id="teacherId">
+
+<input
+type="text"
+id="teacherName"
+placeholder="Nama Guru">
+
+<!-- EMAIL + PASSWORD WRAPPER -->
+<div id="teacherEmailWrapper">
+  <input type="email" id="teacherEmail" placeholder="Email Guru">
+  <input type="password" id="teacherPassword" placeholder="Password (isi saat tambah saja)">
+</div>
+<!-- SUBJECT GROUP -->
+
+<div class="subject-group">
+
+<div id="teacherSubjects"></div>
+
+<option value="">
+Pilih Mata Pelajaran
+</option>
+
+</select>
+
+
+
+</div>
+
+<div class="modal-actions">
+
+<button
+class="primary"
+onclick="saveTeacher()">
+
+Simpan
+
+</button>
+
+<button
+class="danger"
+onclick="closeTeacherModal()">
+
+Batal
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ========================= -->
+<!-- MODAL SUBJECT -->
+<!-- ========================= -->
+
+<div id="subjectModal" class="modal">
+
+<div class="modal-content">
+
+<h3>Tambah Mata Pelajaran</h3>
+
+<input
+type="text"
+id="subjectName"
+placeholder="Nama Mata Pelajaran">
+
+<div class="modal-actions">
+
+<button
+class="primary"
+onclick="saveSubject()">
+
+Simpan
+
+</button>
+
+<button
+class="danger"
+onclick="closeSubjectModal()">
+
+Batal
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+<div id="teacherStatusModal" class="modal">
+  <div class="modal-content">
+    <p id="teacherStatusMessage" style="font-size:16px;color:#334155;"></p>
+    <div class="modal-actions">
+      <button id="cancelStatusBtn" class="btn-warning">Batal</button>
+      <button id="confirmStatusBtn" class="btn-status">Ya</button>
+    </div>
+  </div>
+</div>
+<div id="resetPasswordModal" class="modal">
+  <div class="modal-content">
+    <h3>Reset Password Guru</h3>
+    <p id="resetPasswordMessage">Apakah kamu yakin ingin mereset password guru ini?</p>
+    <div class="modal-actions">
+      <button class="primary" id="confirmResetBtn">Ya, Reset</button>
+      <button class="danger" id="cancelResetBtn">Batal</button>
+    </div>
+  </div>
+</div>
+<script
+type="module"
+src="./teachers.js"></script>
+<div id="toast" class="toast"></div>
+</body>
+
+</html>

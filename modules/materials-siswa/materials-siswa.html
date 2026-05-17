@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Materi Siswa</title>
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+
+
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <div id="sidebar-container"></div>
+
+  <div class="main">
+
+    <div id="header-container"></div>
+
+    <div class="card">
+
+      <div class="page-title">📚 Materi Saya</div>
+
+      <input 
+        type="text"
+        id="searchMaterialSiswa"
+        placeholder="Cari materi..."
+        oninput="filterMaterialsSiswa()"
+      >
+
+      <div id="materialSiswaList"></div>
+
+    </div>
+
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script type="module" src="./materials-siswa.js"></script>
+
+</body>
+</html>

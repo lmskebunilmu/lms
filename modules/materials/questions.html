@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Kelola Latihan</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+};
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<div class="wrapper">
+
+  <div id="sidebar-container"></div>
+
+  <div class="main">
+
+    <div id="header-container"></div>
+
+    <!-- TOMBOL -->
+    <div class="card">
+  <button class="secondary" onclick="goBack()">⬅ Kembali ke Exercise</button>
+  <button class="primary" onclick="showAddForm()">➕ Tambah Soal</button>
+  <input type="file" id="importJson" accept=".json">
+  <button class="primary" onclick="importQuestions()">📥 Import JSON</button>
+</div>
+    <!-- LIST -->
+    <div class="card">
+      <h3>Daftar Soal</h3>
+      <input type="text" id="searchQuestion" placeholder="Cari soal..." oninput="filterQuestions()">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Pertanyaan</th>
+            <th>Tipe</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="questionList"></tbody>
+      </table>
+
+      <div style="display:flex;gap:10px;margin-top:12px;">
+        <button class="primary" onclick="prevPage()">⬅</button>
+        <button class="primary" onclick="nextPage()">➡</button>
+      </div>
+    </div>
+
+    <!-- MODAL -->
+    <div id="questionModal" class="modal">
+      <div class="modal-content">
+        <h3 id="formTitle">Tambah Soal</h3>
+        <select id="type" onchange="changeType()">
+  <option value="pg">Pilihan Ganda</option>
+  <option value="checkbox">Checkbox</option>
+  <option value="isian">Isian Singkat</option>
+  <option value="match">Menjodohkan</option>
+  <option value="multi_isian">Isian Banyak</option>
+</select>
+        
+
+        <textarea id="questionText" placeholder="Pertanyaan"></textarea>
+        
+
+        
+
+<!-- DINAMIS FIELD -->
+<div id="dynamicFields"></div>
+<label style="margin-top:10px;">Pembahasan</label>
+<textarea id="explanation" placeholder="Boleh HTML / LaTeX"></textarea>
+        <div class="modal-actions">
+          <button class="primary" onclick="saveQuestion()">Simpan</button>
+          <button class="danger" onclick="closeForm()">Batal</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DELETE MODAL -->
+    <div id="deleteModal" class="modal">
+      <div class="modal-content">
+        <p id="deleteMessage"></p>
+        <div class="modal-actions">
+          <button id="deleteYes" class="btn-warning">Ya</button>
+          <button id="deleteNo" class="btn-danger">Tidak</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="viewModal" class="modal">
+  <div class="modal-content">
+    <h3>Preview Soal</h3>
+
+    <div id="viewContent"></div>
+
+    <div class="modal-actions">
+      <button class="primary" onclick="closeView()">Tutup</button>
+    </div>
+  </div>
+</div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast"></div>
+
+  </div>
+</div>
+
+<script type="module" src="quetions.js"></script>
+</body>
+</html>

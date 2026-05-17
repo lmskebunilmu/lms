@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kelola Booking Teacher</title>
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/responsive.css">
+
+<style>
+
+.schedule-card{
+background:white;
+border-radius:20px;
+padding:24px;
+box-shadow:0 4px 15px rgba(0,0,0,0.06);
+margin-top:20px;
+}
+
+.section-title{
+font-size:22px;
+font-weight:700;
+margin-bottom:20px;
+color:#111827;
+}
+
+.teacher-action{
+display:flex;
+gap:12px;
+align-items:end;
+margin-bottom:25px;
+flex-wrap:wrap;
+}
+
+.form-group{
+display:flex;
+flex-direction:column;
+gap:8px;
+flex:1;
+}
+
+.form-group label{
+font-size:14px;
+font-weight:600;
+}
+
+.form-group select{
+padding:12px;
+border-radius:12px;
+border:1px solid #d1d5db;
+}
+
+.btn{
+padding:12px 18px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:700;
+}
+
+.btn-primary{
+background:#2563eb;
+color:white;
+}
+
+.btn-danger{
+background:#dc2626;
+color:white;
+}
+
+.btn-warning{
+background:#f59e0b;
+color:white;
+}
+
+.btn-success{
+background:#16a34a;
+color:white;
+}
+
+.table-wrapper{
+overflow:auto;
+margin-top:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+table th,
+table td{
+padding:14px;
+border-bottom:1px solid #e5e7eb;
+text-align:left;
+vertical-align:top;
+}
+
+table th{
+background:#2563eb;
+color:white;
+}
+
+.badge{
+display:inline-block;
+padding:6px 12px;
+border-radius:999px;
+font-size:12px;
+font-weight:700;
+}
+
+.badge-active{
+background:#dcfce7;
+color:#166534;
+}
+
+.badge-pending{
+background:#fef3c7;
+color:#92400e;
+}
+
+.badge-approved{
+background:#dcfce7;
+color:#166534;
+}
+
+.badge-rejected{
+background:#fee2e2;
+color:#991b1b;
+}
+
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:rgba(0,0,0,0.5);
+display:none;
+justify-content:center;
+align-items:flex-start;
+overflow:auto;
+padding:40px 20px;
+z-index:99999;
+box-sizing:border-box;
+}
+
+.modal-content{
+background:white;
+width:100%;
+max-width:1100px;
+border-radius:20px;
+padding:24px;
+margin:auto;
+box-sizing:border-box;
+position:relative;
+animation:modalShow .25s ease;
+}
+
+@keyframes modalShow{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.modal-content{
+background:white;
+width:100%;
+max-width:1000px;
+border-radius:20px;
+padding:24px;
+max-height:90vh;
+overflow:auto;
+}
+
+.day-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:16px;
+margin-top:20px;
+}
+
+.day-card{
+border:1px solid #e5e7eb;
+border-radius:16px;
+padding:16px;
+}
+
+.day-card h4{
+margin-bottom:15px;
+}
+
+.session-list{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.session-item{
+display:flex;
+align-items:center;
+gap:10px;
+padding:10px;
+border:1px solid #e5e7eb;
+border-radius:10px;
+font-size:14px;
+}
+
+.action-group{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.section-box{
+margin-top:40px;
+}
+
+@media(max-width:768px){
+
+.teacher-action{
+flex-direction:column;
+align-items:stretch;
+}
+
+.action-group{
+flex-direction:column;
+}
+
+}
+.main{
+overflow:visible !important;
+}
+
+.wrapper{
+overflow:visible !important;
+}
+
+.modal{
+padding-left:260px;
+}
+
+@media(max-width:768px){
+
+.modal{
+padding-left:20px;
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div id="sidebar-container"></div>
+
+<div class="main">
+
+<div id="header-container"></div>
+
+<div class="schedule-card">
+
+<h1 class="section-title">
+📅 Kelola Booking Teacher
+</h1>
+
+<!-- ===================== -->
+<!-- ATUR JADWAL -->
+<!-- ===================== -->
+
+<div class="teacher-action">
+
+<div class="form-group">
+
+<label>Pilih Teacher</label>
+
+<select id="teacherSelect">
+
+<option value="">
+Pilih Teacher
+</option>
+
+</select>
+
+</div>
+
+<button
+class="btn btn-primary"
+onclick="openScheduleModal()"
+>
+
+Atur Jadwal
+
+</button>
+
+</div>
+
+<!-- ===================== -->
+<!-- LIST JADWAL -->
+<!-- ===================== -->
+
+<div class="section-box">
+
+<h2 class="section-title">
+🗓️ Jadwal Teacher
+</h2>
+<div class="teacher-action">
+
+<div class="form-group">
+
+<label>Cari Siswa / Teacher</label>
+
+<input
+type="text"
+id="bookingSearch"
+placeholder="Cari data booking..."
+style="
+padding:12px;
+border-radius:12px;
+border:1px solid #d1d5db;
+"
+>
+
+</div>
+
+<div class="form-group">
+
+<label>Filter Status</label>
+
+<select id="bookingStatus">
+
+<option value="">
+Semua Status
+</option>
+
+<option value="pending">
+Pending
+</option>
+
+<option value="approved">
+Approved
+</option>
+
+<option value="rejected">
+Rejected
+</option>
+
+</select>
+
+</div>
+
+</div>
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Teacher</th>
+<th>Total Jadwal</th>
+<th>Status</th>
+<th>Aksi</th>
+</tr>
+
+</thead>
+
+<tbody id="scheduleTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ===================== -->
+<!-- BOOKING SISWA -->
+<!-- ===================== -->
+
+<div class="section-box">
+
+<h2 class="section-title">
+📚 Booking Siswa
+</h2>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Siswa</th>
+<th>Teacher</th>
+<th>Tanggal</th>
+<th>Hari</th>
+<th>Sesi</th>
+<th>Status</th>
+<th>Aksi</th>
+</tr>
+
+</thead>
+
+<tbody id="bookingTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+<!-- ===================== -->
+<!-- CEK SESI TERSEDIA -->
+<!-- ===================== -->
+
+<div class="section-box">
+
+<h2 class="section-title">
+🟢 Cek Sesi Tersedia
+</h2>
+
+<div class="teacher-action">
+
+<div class="form-group">
+
+<label>Pilih Teacher</label>
+
+<select id="availabilityTeacher">
+
+<option value="">
+Pilih Teacher
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Pilih Tanggal</label>
+
+<input
+type="date"
+id="availabilityDate"
+style="
+padding:12px;
+border-radius:12px;
+border:1px solid #d1d5db;
+"
+>
+
+</div>
+
+<button
+class="btn btn-primary"
+onclick="loadAvailability()"
+>
+
+Cek Availability
+
+</button>
+
+</div>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Sesi</th>
+<th>Jam</th>
+<th>Status</th>
+</tr>
+
+</thead>
+
+<tbody id="availabilityTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+</div>
+
+
+</div>
+
+</div>
+
+<!-- ===================== -->
+<!-- MODAL -->
+<!-- ===================== -->
+
+<div class="modal" id="scheduleModal">
+
+<div class="modal-content">
+
+<h2>
+🗓️ Atur Jadwal Teacher
+</h2>
+
+<div class="day-grid">
+
+<div class="day-card">
+<h4>Senin</h4>
+<div class="session-list" id="Senin_sessions"></div>
+</div>
+
+<div class="day-card">
+<h4>Selasa</h4>
+<div class="session-list" id="Selasa_sessions"></div>
+</div>
+
+<div class="day-card">
+<h4>Rabu</h4>
+<div class="session-list" id="Rabu_sessions"></div>
+</div>
+
+<div class="day-card">
+<h4>Kamis</h4>
+<div class="session-list" id="Kamis_sessions"></div>
+</div>
+
+<div class="day-card">
+<h4>Jumat</h4>
+<div class="session-list" id="Jumat_sessions"></div>
+</div>
+
+<div class="day-card">
+<h4>Sabtu</h4>
+<div class="session-list" id="Sabtu_sessions"></div>
+</div>
+
+<div class="day-card">
+<h4>Minggu</h4>
+<div class="session-list" id="Minggu_sessions"></div>
+</div>
+
+</div>
+
+<div
+style="
+display:flex;
+gap:10px;
+margin-top:25px;
+"
+>
+
+<button
+class="btn btn-success"
+onclick="saveSchedule()"
+>
+
+💾 Simpan
+
+</button>
+
+<button
+class="btn btn-danger"
+onclick="closeModal()"
+>
+
+Tutup
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+<!-- VIEW MODAL -->
+<div class="modal" id="viewModal">
+
+<div class="modal-content">
+
+<h2>
+📅 Detail Jadwal Teacher
+</h2>
+
+<div id="viewScheduleContent"></div>
+
+<div style="margin-top:20px;">
+
+<button
+class="btn btn-danger"
+onclick="closeViewModal()"
+>
+
+Tutup
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+<script type="module" src="./booking-management.js"></script>
+
+</body>
+</html>

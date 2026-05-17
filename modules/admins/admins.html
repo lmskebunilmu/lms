@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kelola Admin Sekolah</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar-container"></div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div id="header-container"></div>
+
+    <!-- TOMBOL TAMBAH ADMIN -->
+    <div class="card">
+      <button class="primary" onclick="showAddForm()">➕ Buat Admin Sekolah</button>
+    </div>
+
+    <!-- LIST ADMIN -->
+    <div class="card">
+      <h3>📋 Daftar Admin Sekolah</h3>
+      <input type="text" id="searchAdmin" placeholder="Cari admin..." oninput="filterAdmins()">
+      <ul id="adminList"></ul>
+      <div style="display:flex;gap:10px;margin-top:10px;">
+        <button class="primary" onclick="prevPage()">⬅ Prev</button>
+        <button class="primary" onclick="nextPage()">Next ➡</button>
+      </div>
+    </div>
+
+    <!-- MODAL FORM -->
+    <div id="adminModal" class="modal">
+      <div class="modal-content">
+        <h3 id="formTitle">Tambah Admin Sekolah</h3>
+
+        <input type="text" id="adminName" placeholder="Nama Admin">
+        <input type="email" id="adminEmail" placeholder="Email Admin">
+        <input type="password" id="adminPassword" placeholder="Password (minimal 6 karakter)">
+        <select id="schoolId">
+  <option value="">Pilih Sekolah</option>
+</select>
+        <input type="file" id="adminAvatar" accept="image/*">
+        <input type="text" id="adminAvatarURL" placeholder="Link Avatar (URL)">
+
+        <div class="modal-actions">
+          <button class="primary" onclick="saveAdmin()">Simpan</button>
+          <button class="danger" onclick="closeForm()">Batal</button>
+        </div>
+      </div>
+    </div>
+<!-- MODAL KONFIRMASI HAPUS -->
+<div id="confirmModal" class="modal">
+  <div class="modal-content" style="max-width:400px; text-align:center;">
+    <p id="confirmMessage">Yakin hapus admin ini?</p>
+    <div style="display:flex; justify-content:center; gap:10px; margin-top:20px;">
+      <button id="confirmYes" class="btn-danger">Hapus</button>
+      <button id="confirmNo" class="btn-secondary">Batal</button>
+    </div>
+  </div>
+</div>
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast"></div>
+
+  </div>
+</div>
+
+<!-- LOAD LAYOUT -->
+<script type="module">
+  import { loadLayout } from "../../assets/js/components.js";
+  loadLayout("superadmin");
+</script>
+
+<!-- MODULE JS ADMIN -->
+<script type="module" src="./admins.js"></script>
+</body>
+</html>
