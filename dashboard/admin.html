@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Sekolah Dashboard</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .profile-card { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+    .avatar-wrapper img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; }
+    .profile-info-wrapper { display: flex; justify-content: space-between; align-items: center; flex: 1; }
+    .btn-edit { background-color: #3b82f6; color: white; border: none; padding: 10px 20px; font-size: 0.95rem; border-radius: 10px; cursor: pointer; flex-shrink:0; transition:0.2s; }
+    .btn-edit:hover { background-color: #2563eb; }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar-container"></div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div id="header-container"></div>
+
+    <!-- PROFILE SEKOLAH CARD -->
+<div class="profile-card" id="schoolProfileCard">
+
+  <div class="avatar-wrapper">
+    <img src="../assets/images/default-logo.png"
+         id="schoolLogoCard"
+         alt="Logo Sekolah">
+  </div>
+
+  <div class="profile-info-wrapper">
+
+    <div class="profile-info">
+          <h2 id="schoolNameCard">
+            Nama Sekolah
+          </h2>
+
+          <p id="schoolCodeCard">
+            Kode Sekolah
+          </p>
+        </div>
+
+        <button class="btn-edit"
+                onclick="openSchoolModal()">
+          Edit Sekolah
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- PROFILE CARD -->
+    <div class="profile-card" id="profileCard">
+        <div class="avatar-wrapper">
+            <img src="../assets/images/default-avatar.png" id="headerAvatarCard" alt="Avatar Admin">
+        </div>
+        <div class="profile-info-wrapper">
+        <div class="profile-info">
+    <h2 id="headerNameCard">Nama Admin</h2>
+    <p id="headerEmailCard">admin@sekolah.com</p>
+
+    <!-- Tambahan -->
+    <p id="headerSchoolCard">Nama Sekolah</p>
+
+</div>
+            <button class="btn-edit" onclick="openProfileModal()">Edit Profile</button>
+        </div>
+    </div>
+
+    <!-- DASHBOARD CARD -->
+    <div class="card">
+      <h1>Dashboard Admin Sekolah</h1>
+      <hr>
+
+      <!-- Statistik -->
+      <h3>Statistik</h3>
+      <div class="stats" style="display:flex; gap:20px;">
+        <div class="card" style="flex:1; text-align:center;">
+          <h2 id="totalStudents">0</h2>
+          <p>Murid Terdaftar</p>
+        </div>
+        <div class="card" style="flex:1; text-align:center;">
+          <h2 id="totalTeachers">0</h2>
+          <p>Guru Terdaftar</p>
+        </div>
+        <div class="card" style="flex:1; text-align:center;">
+          <h2 id="totalClasses">0</h2>
+          <p>Kelas</p>
+        </div>
+      </div>
+
+      <!-- Aktivitas Terbaru -->
+      <h3 style="margin-top:24px;">Aktivitas Terbaru</h3>
+      <div class="timeline" id="activityTimeline"></div>
+
+      <!-- Grafik Murid per Kelas -->
+      <h3 style="margin-top:24px;">Distribusi Murid per Kelas</h3>
+      <canvas id="classChart" style="max-width:400px;"></canvas>
+    </div>
+
+  </div>
+</div>
+
+<!-- EDIT PROFILE MODAL -->
+<div id="profileModal" class="modal">
+  <div class="modal-content">
+    <h3>Edit Profile</h3>
+
+    <input type="text" id="profileName" placeholder="Nama Lengkap">
+
+    <input type="email" id="profileEmail" placeholder="Email">
+
+    <!-- INI WAJIB -->
+    <input type="file" id="profileAvatarFile" accept="image/*">
+
+    <input type="text" id="profileSchool" placeholder="Nama Sekolah">
+
+    <div class="modal-actions">
+      <button class="primary" onclick="saveProfile()">Simpan</button>
+      <button class="danger" onclick="closeProfileModal()">Batal</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- EDIT SEKOLAH MODAL -->
+<div id="schoolModal" class="modal">
+
+  <div class="modal-content">
+
+    <h3>Edit Profil Sekolah</h3>
+
+    <input type="text"
+           id="schoolNameInput"
+           placeholder="Nama Sekolah">
+
+    <input type="file"
+           id="schoolLogoFile"
+           accept="image/*">
+
+    <div class="modal-actions">
+
+      <button class="primary"
+              onclick="saveSchoolProfile()">
+        Simpan
+      </button>
+
+      <button class="danger"
+              onclick="closeSchoolModal()">
+        Batal
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+<div id="toast" class="toast">
+  <span id="toastMessage">
+    Berhasil
+  </span>
+</div>
+<script type="module" src="./adminDashboard.js"></script>
+</body>
+</html>

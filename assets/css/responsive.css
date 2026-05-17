@@ -1,0 +1,118 @@
+/* =========================
+   MOBILE & TABLET
+========================= */
+@media (max-width: 768px) {
+
+  /* -------------------------
+     LAYOUT
+  ------------------------- */
+  .wrapper {
+    flex-direction: column;
+  }
+
+  /* -------------------------
+     SIDEBAR MOBILE
+  ------------------------- */
+  .sidebar {
+    position: fixed;
+    left: -260px;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    padding-top: 20px;
+    transition: left 0.25s ease;
+    z-index: 1000;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  /* -------------------------
+     OVERLAY FIX
+  ------------------------- */
+  .overlay {
+    backdrop-filter: blur(2px);
+  }
+
+  /* -------------------------
+     HAMBURGER
+  ------------------------- */
+  .hamburger {
+    display: block;
+    font-size: 22px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: 0.2s;
+  }
+
+  .hamburger:hover {
+    background: #f1f5f9;
+  }
+
+  /* -------------------------
+     HEADER
+  ------------------------- */
+  .header {
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+
+  /* SCHOOL INFO */
+  .school-info span {
+    font-size: 14px;
+  }
+
+  /* USER INFO */
+  .user-info span {
+    display: none; /* sembunyikan nama user di HP */
+  }
+
+  /* -------------------------
+     MAIN CONTENT
+  ------------------------- */
+  .main {
+    padding: 14px;
+  }
+
+  /* -------------------------
+     CARD
+  ------------------------- */
+  .card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  /* -------------------------
+     INPUT
+  ------------------------- */
+  input, textarea, select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* -------------------------
+     BUTTONS
+  ------------------------- */
+  button.primary {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  /* -------------------------
+     SIDEBAR MENU
+  ------------------------- */
+  .sidebar button {
+    font-size: 14px;
+    padding: 13px 16px;
+  }
+
+  /* -------------------------
+     LIST
+  ------------------------- */
+  li {
+    font-size: 14px;
+    padding: 12px;
+  }
+}

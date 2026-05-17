@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Detail Kelas</title>
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/responsive.css"
+  />
+
+  <style>
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      background:#f1f5f9;
+      font-family:Arial, sans-serif;
+      color:#0f172a;
+    }
+
+    .wrapper{
+      display:flex;
+      min-height:100vh;
+    }
+
+    .main{
+      flex:1;
+      padding:20px;
+    }
+
+    .card{
+      background:white;
+      border-radius:18px;
+      padding:20px;
+      margin-bottom:20px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    /* ======================
+       HERO
+    ====================== */
+
+    .class-hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      min-height:280px;
+      display:flex;
+      align-items:flex-end;
+      padding:30px;
+      color:white;
+      background:#111827;
+    }
+
+    .class-hero img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:1;
+    }
+
+    .class-overlay{
+      position:absolute;
+      inset:0;
+      background:
+      linear-gradient(
+        to top,
+        rgba(0,0,0,0.8),
+        rgba(0,0,0,0.2)
+      );
+      z-index:2;
+    }
+
+    .class-hero-content{
+      position:relative;
+      z-index:3;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:bold;
+      margin-bottom:12px;
+    }
+
+    .badge-premium{
+      background:
+      linear-gradient(
+        135deg,
+        #ef4444,
+        #f97316
+      );
+    }
+
+    .badge-free{
+      background:
+      linear-gradient(
+        135deg,
+        #10b981,
+        #34d399
+      );
+    }
+
+    .class-title{
+      font-size:32px;
+      margin:0 0 10px;
+    }
+
+    .class-description{
+      max-width:700px;
+      line-height:1.6;
+      color:#e2e8f0;
+    }
+
+    /* ======================
+       INFO GRID
+    ====================== */
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:
+      repeat(auto-fit,minmax(180px,1fr));
+      gap:16px;
+      margin-top:20px;
+    }
+
+    .info-box{
+      background:#f8fafc;
+      border-radius:14px;
+      padding:16px;
+    }
+
+    .info-box h4{
+      margin:0 0 8px;
+      font-size:13px;
+      color:#64748b;
+    }
+
+    .info-box p{
+      margin:0;
+      font-weight:600;
+      font-size:15px;
+    }
+
+    /* ======================
+       MATERIAL
+    ====================== */
+
+    .section-title{
+      margin-bottom:18px;
+      font-size:22px;
+    }
+
+    .material-list{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .material-item{
+      background:#f8fafc;
+      border-radius:16px;
+      padding:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:15px;
+      transition:0.2s;
+    }
+
+    .material-item:hover{
+      transform:translateY(-2px);
+      background:#eef2ff;
+    }
+
+    .material-left{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+
+    .material-icon{
+      width:48px;
+      height:48px;
+      border-radius:12px;
+      background:#2563eb;
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:20px;
+      flex-shrink:0;
+    }
+
+    .material-title{
+      margin:0 0 5px;
+      font-size:16px;
+      font-weight:700;
+    }
+
+    .material-desc{
+      margin:0;
+      font-size:13px;
+      color:#64748b;
+      line-height:1.5;
+    }
+
+    .btn-open{
+      border:none;
+      background:
+      linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+      );
+      color:white;
+      padding:10px 16px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.2s;
+    }
+
+    .btn-open:hover{
+      transform:scale(1.04);
+    }
+
+    /* ======================
+       EMPTY
+    ====================== */
+
+    .empty{
+      text-align:center;
+      padding:40px;
+      color:#64748b;
+    }
+
+    .exercise-item{
+  margin-left:40px;
+  padding:6px 10px;
+  font-size:14px;
+  color:#475569;
+}
+
+    /* ======================
+       MOBILE
+    ====================== */
+
+    @media(max-width:768px){
+
+      .main{
+        padding:14px;
+      }
+
+      .class-hero{
+        min-height:240px;
+        padding:20px;
+      }
+
+      .class-title{
+        font-size:24px;
+      }
+
+      .material-item{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .btn-open{
+        width:100%;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar-container"></div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div id="header-container"></div>
+
+    <!-- HERO -->
+    <div class="class-hero card">
+
+      <img
+        id="classThumbnail"
+        src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200"
+        alt="Thumbnail"
+      />
+
+      <div class="class-overlay"></div>
+
+      <div class="class-hero-content">
+
+        <div
+          id="classBadge"
+          class="badge badge-free"
+        >
+          FREE
+        </div>
+
+        <h1
+          id="className"
+          class="class-title"
+        >
+          Loading...
+        </h1>
+
+        <p
+          id="classDescription"
+          class="class-description"
+        >
+          Memuat deskripsi kelas...
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- INFO -->
+    <div class="card">
+
+      <div class="info-grid">
+
+        <div class="info-box">
+          <h4>Subject</h4>
+          <p id="classSubject">-</p>
+        </div>
+
+        <div class="info-box">
+          <h4>Teacher</h4>
+          <p id="classTeacher">-</p>
+        </div>
+
+        <div class="info-box">
+          <h4>Level</h4>
+          <p id="classLevel">-</p>
+        </div>
+
+        <div class="info-box">
+          <h4>Curriculum</h4>
+          <p id="classCurriculum">-</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- MATERIAL -->
+    <div class="card">
+
+      <h2 class="section-title">
+        📚 Materi Kelas
+      </h2>
+
+      <div
+        id="materialContainer"
+        class="material-list"
+      >
+
+        <div class="empty">
+          Loading materi...
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script type="module" src="./classDetail.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+<meta charset="UTF-8">
+<title>Dashboard Siswa</title>
+
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar-container"></div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HEADER -->
+    <div id="header-container"></div>
+
+    <!-- PROFILE SISWA -->
+    <div class="profile-card">
+
+      <img
+        id="headerAvatarCard"
+        class="profile-avatar"
+        src="../assets/images/default-avatar.png"
+      >
+
+      <div class="profile-details">
+        <h2 id="headerNameCard">Nama Siswa</h2>
+        <p id="headerEmailCard">email@siswa.com</p>
+      </div>
+
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="card">
+      <h3>Dashboard Siswa</h3>
+
+      <div class="stats-grid">
+
+        <div class="stat-card">
+          <h4 id="totalMaterials">0</h4>
+          <p>Materi</p>
+        </div>
+
+        <div class="stat-card">
+          <h4 id="totalAssignments">0</h4>
+          <p>Tugas</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- KELAS & MAPEL -->
+<div class="card">
+  <h3>Kelas & Mata Pelajaran</h3>
+  <div id="classContainer"></div>
+</div>
+
+    <!-- MENU -->
+    <div class="card">
+
+      <h3>Menu</h3>
+
+<div class="menu-grid">
+
+  <button onclick="goMaterialsSiswa()">
+    📚 Materi
+  </button>
+
+  <button onclick="goAssignmentsSiswa()">
+    📝 Tugas
+  </button>
+
+  <button onclick="logout()">
+    🚪 Logout
+  </button>
+
+</div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script type="module" src="./siswaDashboard.js"></script>
+
+</body>
+</html>

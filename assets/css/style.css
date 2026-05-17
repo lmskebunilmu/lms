@@ -1,0 +1,1993 @@
+/* =========================
+   BASE RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background: #f1f5f9;
+  color: #334155;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding-top: 20px;
+  background: linear-gradient(180deg, #1e293b, #0f172a);
+  color: white;
+  overflow-y: auto;
+  transition: left 0.25s ease;
+  z-index: 1000;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.15);
+}
+
+/* SIDEBAR TITLE */
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* SIDEBAR MENU BUTTON */
+.sidebar button {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #cbd5f5;
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, padding-left 0.2s ease, color 0.2s ease;
+}
+
+.sidebar button:hover {
+  background: rgba(255,255,255,0.08);
+  padding-left: 24px;
+  color: white;
+}
+
+.sidebar button.active {
+  background: rgba(255,255,255,0.12);
+  color: white;
+  font-weight: 500;
+  position: relative;
+}
+
+.sidebar button.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 4px;
+  background: #3b82f6;
+  border-radius: 4px;
+}
+
+/* SCROLLBAR MODERN */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+.main {
+  flex: 1;
+  padding: 24px;
+  animation: fadeIn 0.3s ease;
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 16px 20px;
+  border-radius: 14px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* SCHOOL INFO */
+.school-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+}
+
+/* USER INFO */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e2e8f0;
+}
+
+/* HAMBURGER */
+.hamburger {
+  font-size: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
+/* =========================
+   CARD
+========================= */
+.card {
+  background: white;
+  padding: 22px;
+  border-radius: 16px;
+  margin-bottom: 22px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   INPUTS
+========================= */
+input, textarea, select {
+  width: 100%;
+  padding: 11px 12px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+button {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+button.primary {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(37,99,235,0.3);
+}
+
+button.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(37,99,235,0.35);
+}
+
+button.danger {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+button.danger:hover {
+  background: #dc2626;
+}
+
+button.warning {
+  background: #f59e0b;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  box-shadow: 0 3px 8px rgba(245,158,11,0.3);
+}
+
+button.warning:hover {
+  background: #d97706;
+  transform: translateY(-1px);
+}
+
+/* =========================
+   LIST
+========================= */
+ul {
+  list-style: none;
+}
+
+li {
+  background: #f8fafc;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+/* =========================
+   MODAL
+========================= */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  align-items: center; justify-content: center;
+  z-index: 9999;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  width: 95%;
+  max-width: 800px;
+
+  max-height: 90vh;   /* 🔥 batasi tinggi */
+  overflow-y: auto;   /* 🔥 aktifin scroll */
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* =========================
+   SCHOOL ITEM
+========================= */
+.school-item {
+  display: flex;
+  justify-content: space-between; /* memisahkan kiri dan kanan */
+  align-items: center;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 10px;
+}
+
+.school-info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1; /* agar menempati space tersisa */
+}
+
+.school-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0; /* tombol tidak mengecil */
+}
+.school-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid #e2e8f0;
+}
+
+.school-text b {
+  font-size: 15px;
+}
+
+.school-text span {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* =========================
+   TOAST
+========================= */
+.toast {
+  position: fixed;
+  top: 20px; right: 20px;
+  background: #2563eb;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+.toast.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.error {
+  background: #ef4444;
+}
+
+/* =========================
+   PROFILE CARD
+========================= */
+
+.btn-edit {
+  margin-left: 20px; /* optional spacing */
+}
+
+/* Tombol edit di kanan card */
+.btn-edit {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0; /* agar tidak mengecil */
+}
+
+.btn-edit:hover {
+  background-color: #2563eb;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   TABLE
+========================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 14px;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+th {
+  background: #f1f5f9;
+  font-weight: 600;
+}
+
+tr:hover {
+  background: #f8fafc;
+}
+
+.btn-add {
+  background: linear-gradient(135deg,#2563eb,#3b82f6);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.btn-add:hover {
+  transform: translateY(-1px);
+}
+
+.btn-delete {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+}
+
+.subject-group {
+display: flex;
+gap: 8px;
+margin-top: 10px;
+}
+
+.btn-add-small {
+background: #10b981;
+color: white;
+border: none;
+padding: 8px 12px;
+border-radius: 8px;
+cursor: pointer;
+}
+
+.btn-add-small:hover {
+background: #059669;
+}
+
+/* ========================= */
+/* BUTTON EDIT */
+/* ========================= */
+
+.btn-warning {
+
+  background: #f59e0b;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 6px;
+
+}
+
+.btn-warning:hover {
+
+  background: #d97706;
+
+}
+/* =========================
+   BUTTON INFO (LIHAT SISWA)
+========================= */
+
+.btn-info {
+
+  background: #0ea5e9; /* biru muda */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+
+}
+
+.btn-info:hover {
+
+  background: #0284c7;
+
+}
+/* =========================
+   STUDENT LIST SCROLL
+========================= */
+
+#studentList {
+
+  max-height: 300px;
+  overflow-y: auto;
+
+  padding-left: 4px;
+  margin-top: 12px;
+
+}
+
+/* Scrollbar modern */
+
+#studentList::-webkit-scrollbar {
+  width: 6px;
+}
+
+#studentList::-webkit-scrollbar-thumb {
+  background: #cbd5f5;
+  border-radius: 10px;
+}
+/* =========================
+   TABLE ACTION BUTTONS
+========================= */
+
+td button {
+
+  margin-right: 6px;
+  margin-bottom: 4px;
+
+}
+
+.stats-grid {
+
+display: grid;
+
+grid-template-columns:
+repeat(auto-fit, minmax(180px,1fr));
+
+gap: 16px;
+
+margin-top: 20px;
+
+}
+
+.stat-card {
+
+background: #fff;
+
+padding: 20px;
+
+border-radius: 12px;
+
+text-align: center;
+
+box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+
+}
+
+.stat-card h4 {
+
+font-size: 28px;
+
+margin-bottom: 6px;
+
+color: #2563eb;
+
+}
+.menu-grid {
+
+display: grid;
+
+grid-template-columns:
+repeat(auto-fit, minmax(160px,1fr));
+
+gap: 14px;
+
+margin-top: 15px;
+
+}
+
+.menu-grid button {
+
+padding: 14px;
+
+font-size: 15px;
+
+border-radius: 10px;
+
+border: none;
+
+background: #2563eb;
+
+color: white;
+
+cursor: pointer;
+
+transition: 0.2s;
+
+}
+
+.menu-grid button:hover {
+
+background: #1e40af;
+
+}
+/* =========================
+   PROFILE CARD FINAL CLEAN
+========================= */
+
+.profile-card {
+
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 18px 20px;
+
+  background: white;
+
+  border-radius: 16px;
+
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+
+  margin-bottom: 22px;
+
+}
+
+/* Avatar */
+
+.profile-avatar {
+
+  width: 68px;
+  height: 68px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border: 3px solid #e2e8f0;
+
+}
+
+/* Detail */
+
+.profile-details {
+
+  flex: 1;
+
+}
+
+.profile-details h2 {
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  margin-bottom: 3px;
+
+}
+
+.profile-details p {
+
+  font-size: 14px;
+
+  color: #64748b;
+
+  margin: 0;
+
+}
+
+/* Edit button */
+
+.profile-card .btn-edit {
+
+  background: #2563eb;
+
+  color: white;
+
+  border: none;
+
+  padding: 10px 18px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+}
+
+.profile-card .btn-edit:hover {
+
+  background: #1d4ed8;
+
+}
+
+/* Hover effect */
+
+.profile-card:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+
+}
+
+.school-info-row img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* =========================
+   CONFIRM MODAL (DELETE ADMIN)
+========================= */
+#confirmModal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* overlay gelap */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+#confirmModal.active {
+  display: flex;
+}
+
+#confirmModal .modal-content {
+  background: white;
+  padding: 24px 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+  animation: fadeIn 0.25s ease forwards;
+}
+
+#confirmModal #confirmMessage {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #334155;
+}
+
+#confirmModal .modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+#confirmModal button {
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 14px;
+  border: none;
+  transition: 0.2s;
+}
+
+#confirmModal .btn-warning {
+  background: #f59e0b;
+  color: white;
+}
+
+#confirmModal .btn-warning:hover {
+  background: #d97706;
+}
+
+#confirmModal .btn-danger {
+  background: #ef4444;
+  color: white;
+}
+
+#confirmModal .btn-danger:hover {
+  background: #dc2626;
+}
+/* =========================
+   CONFIRM MODAL DELETE SEKOLAH
+========================= */
+#deleteSchoolModal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+#deleteSchoolModal.active {
+  display: flex;
+}
+
+#deleteSchoolModal .modal-content {
+  background: white;
+  padding: 24px 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+  animation: fadeIn 0.25s ease forwards;
+}
+
+#deleteSchoolModal #deleteSchoolMessage {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #334155;
+}
+
+#deleteSchoolModal .modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+#deleteSchoolModal button {
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 14px;
+  border: none;
+  transition: 0.2s;
+}
+
+#deleteSchoolModal .btn-warning {
+  background: #f59e0b;
+  color: white;
+}
+
+#deleteSchoolModal .btn-warning:hover {
+  background: #d97706;
+}
+
+#deleteSchoolModal .btn-danger {
+  background: #ef4444;
+  color: white;
+}
+
+#deleteSchoolModal .btn-danger:hover {
+  background: #dc2626;
+}
+.ts-control {
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.ts-dropdown {
+    border-radius: 10px;
+}
+
+.ts-control.multi .item {
+    background: #2563eb;
+    color: white;
+    border-radius: 6px;
+}
+/* =========================
+   BUTTON EXPORT
+========================= */
+
+.btn-export {
+  background: linear-gradient(135deg, #10b981, #34d399); /* hijau */
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 12px;
+  margin-left: 6px;
+  box-shadow: 0 4px 10px rgba(16,185,129,0.3);
+  transition: 0.2s;
+}
+
+.btn-export:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #059669, #10b981);
+  box-shadow: 0 6px 14px rgba(16,185,129,0.35);
+}
+
+/* =========================
+   BUTTON RESET PASSWORD (rata kanan style konsisten)
+========================= */
+.btn-reset, .btn-secondary {
+  background: linear-gradient(135deg, #6366f1, #818cf8); /* ungu gradient */
+  color: white;
+  border: none;
+  padding: 8px 14px;          /* mirip tombol lain */
+  border-radius: 8px;         /* konsisten */
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 3px 8px rgba(99,102,241,0.3); /* shadow mirip tombol warning */
+  transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-reset:hover, .btn-secondary:hover {
+  background: linear-gradient(135deg, #4f46e5, #6366f1); /* hover lebih gelap */
+  transform: translateY(-1px);
+  box-shadow: 0 5px 12px rgba(99,102,241,0.35);
+}
+#resetPasswordModal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+#resetPasswordModal.active {
+  display: flex;
+}
+
+#resetPasswordModal .modal-content {
+  background: white;
+  padding: 24px 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+  animation: fadeIn 0.25s ease forwards;
+}
+
+#resetPasswordModal #resetPasswordMessage {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #334155;
+}
+
+#resetPasswordModal .modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+#resetPasswordModal button.primary {
+  background: linear-gradient(135deg, #6366f1, #818cf8);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+#resetPasswordModal button.primary:hover {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+}
+
+#resetPasswordModal button.danger {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+#resetPasswordModal button.danger:hover {
+  background: #dc2626;
+}
+
+/* =========================
+   BUTTON STATUS GURU
+========================= */
+.btn-status {
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.btn-status.aktif {
+  background-color: #16a34a; /* hijau */
+}
+
+.btn-status.aktif:hover {
+  background-color: #15803d;
+}
+
+.btn-status.nonaktif {
+  background-color: #ef4444; /* merah */
+}
+
+.btn-status.nonaktif:hover {
+  background-color: #dc2626;
+}
+
+/* =========================
+   STUDENT SEARCH & FILTER
+========================= */
+.search-box {
+  display: flex;            /* bikin elemen berjejer horizontal */
+  gap: 10px;                /* jarak antar input/dropdown */
+  align-items: center;      /* rata tengah secara vertikal */
+  flex-wrap: wrap;          /* kalau layar sempit, bisa pindah baris */
+  margin-bottom: 16px;      /* jarak ke tabel atau konten bawah */
+}
+
+.search-box input {
+  flex: 1;                  /* input melebar sesuai ruang tersisa */
+  min-width: 200px;         /* minimal lebar input */
+}
+
+.search-box select {
+  min-width: 140px;         /* ukuran dropdown */
+  padding: 11px 12px;       /* konsisten dengan style input */
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  background: white;
+}
+/* =========================
+   MODAL MODE SWITCH (MANUAL / CSV)
+========================= */
+.mode-switch {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.mode-switch button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #f1f5f9;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+/* aktif */
+.mode-switch button.active {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+  border: none;
+}
+/* =========================
+   BUTTON IMPORT CSV
+========================= */
+.btn-import {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24); /* orange */
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 12px;
+  margin-left: 6px;
+  box-shadow: 0 4px 10px rgba(245,158,11,0.3);
+  transition: 0.2s;
+}
+
+.btn-import:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  box-shadow: 0 6px 14px rgba(245,158,11,0.35);
+}
+/* =========================
+   BUTTON TEMPLATE CSV (UPGRADED)
+========================= */
+.btn-template {
+  background: linear-gradient(135deg, #0ea5e9, #38bdf8); /* biru muda */
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 12px;
+  margin-left: 6px;
+  box-shadow: 0 4px 10px rgba(14,165,233,0.3);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* hover lebih hidup */
+.btn-template:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  box-shadow: 0 6px 16px rgba(14,165,233,0.4);
+}
+
+/* efek klik */
+.btn-template:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 6px rgba(14,165,233,0.3);
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #2563eb; /* warna biru */
+}
+.bulk-actions {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0 14px;
+  flex-wrap: wrap;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.class-box {
+  border: 1px solid #ddd;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.class-box h4 {
+  margin-bottom: 6px;
+}
+
+.class-box ul {
+  padding-left: 16px;
+}
+
+.class-toggle {
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.class-toggle:hover {
+  background: #1e40af;
+}
+
+.class-detail {
+  padding: 10px;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.export-buttons {
+  margin: 10px 0;
+}
+#submissionSectionStudent {
+  display: none;
+}
+
+/* =========================
+   MATERIAL GURU PAGE
+========================= */
+
+/* container list */
+.material-container {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* box per BAB */
+.bab-box {
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 14px;
+  transition: 0.2s;
+}
+
+/* hover */
+.bab-box:hover {
+  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+}
+
+/* title BAB (klik accordion) */
+.bab-title {
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+
+/* list subbab (hidden by default) */
+.subbab-list {
+  margin-top: 12px;
+
+  max-height: 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  transition: max-height 0.3s ease;
+}
+
+/* show kalau active */
+.bab-box.active .subbab-list {
+  max-height: 500px; /* cukup besar */
+}
+
+/* item subbab */
+.subbab-list > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+/* label */
+.subbab-list label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* checkbox lebih rapi */
+.subbab-check {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* tombol preview */
+.subbab-list button {
+  background: #0ea5e9;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.2s;
+}
+
+.subbab-list button:hover {
+  background: #0284c7;
+}
+
+/* tombol assign */
+.bab-box > button {
+  margin-top: 12px;
+  width: auto;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #10b981, #34d399);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.bab-box > button:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #059669, #10b981);
+}
+.subjects-checkbox-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.subject-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+/* =========================
+   EXERCISE PAGE
+========================= */
+
+.exercise-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.exercise-header {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  margin-bottom: 16px;
+}
+
+.exercise-box {
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 12px;
+}
+
+.exercise-question {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.exercise-answer {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+button.success {
+  background: #10b981;
+  color: white;
+}
+
+/* =========================
+   ACTION BUTTON TABLE
+========================= */
+
+.action-buttons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* base tombol aksi */
+.action-buttons button {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+  color: white;
+}
+
+/* VIEW */
+.btn-view {
+  background: #0ea5e9;
+}
+.btn-view:hover {
+  background: #0284c7;
+}
+
+/* EDIT */
+.btn-edit {
+  background: #f59e0b;
+}
+.btn-edit:hover {
+  background: #d97706;
+}
+
+/* EXERCISE */
+.btn-exercise {
+  background: #10b981;
+}
+.btn-exercise:hover {
+  background: #059669;
+}
+
+
+
+/* =========================
+   DYNAMIC OPTIONS EXERCISE
+========================= */
+
+#optionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.option-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.option-row input {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.option-row button {
+  white-space: nowrap;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #ef4444;
+  color: white;
+  font-size: 13px;
+}
+
+.option-row button:hover {
+  background: #dc2626;
+}
+
+#optionsWrapper > button {
+  margin-top: 8px;
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+#optionsWrapper > button:hover {
+  background: #059669;
+}
+
+/* =========================
+   BUTTON HAPUS OPSI
+========================= */
+.btn-delete-option {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.btn-delete-option:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+.question-image {
+  max-width: 300px;
+  max-height: 250px;
+  display: block;
+  margin: 10px 0;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.option-item{
+  display:flex;
+  gap:10px;
+  margin-bottom:8px;
+}
+
+.option-item input{
+  flex:1;
+}
+
+
+/* =========================
+   DYNAMIC FORM FIX
+========================= */
+
+/* container field */
+#dynamicFields {
+  margin-top: 14px;
+}
+
+/* label */
+#dynamicFields label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #475569;
+}
+
+/* =========================
+   OPTION (PG & CHECKBOX)
+========================= */
+
+.option-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.option-row input {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.option-row button {
+  background: #ef4444;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.option-row button:hover {
+  background: #dc2626;
+}
+
+/* tombol tambah opsi */
+#dynamicFields > button {
+  margin-top: 6px;
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+#dynamicFields > button:hover {
+  background: #059669;
+}
+/* =========================
+   FIX MENJODOHKAN (KIRI-KANAN)
+========================= */
+
+.pair-row {
+  display: flex;
+  flex-direction: row; /* PAKSA horizontal */
+  gap: 10px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+/* biar input gak turun */
+.pair-row input {
+  flex: 1;
+  width: auto;      /* override width:100% */
+  margin-bottom: 0;
+}
+
+/* tombol hapus */
+.pair-row button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* =========================
+   MODAL FORM IMPROVEMENT
+========================= */
+
+.modal-content textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.modal-content select {
+  margin-bottom: 12px;
+}
+
+/* biar tombol bawah ga nempel */
+.modal-actions {
+  margin-top: 16px;
+}
+
+/* =========================
+   PREVIEW QUESTION (RAPI)
+========================= */
+
+#viewContent {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* box soal */
+.preview-question {
+  padding: 12px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+/* opsi */
+.preview-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  transition: 0.2s;
+}
+
+.preview-option:hover {
+  background: #f1f5f9;
+}
+
+/* radio/checkbox */
+.preview-option input {
+  margin-top: 6px;
+}
+
+/* iframe rapi */
+.preview-option iframe,
+.preview-question iframe {
+  width: 100%;
+  border: none;
+  background: transparent;
+}
+
+/* =========================
+   TABLE BUTTON ALIGN
+========================= */
+
+td {
+  vertical-align: middle;
+}
+
+td button {
+  margin-right: 4px;
+}
+
+/* =========================
+   RESPONSIVE FORM
+========================= */
+
+@media (max-width: 600px) {
+  .pair-row {
+    flex-direction: column;
+  }
+
+  .option-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .option-row button,
+  .pair-row button {
+    width: 100%;
+  }
+}
+
+.preview-explanation {
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* =========================
+   TABLE ACTION (IMPROVED)
+========================= */
+td .action-btn {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-right: 4px;
+  color: white;
+  transition: 0.2s;
+}
+
+/* view */
+.action-btn.view {
+  background: #0ea5e9;
+}
+.action-btn.view:hover {
+  background: #0284c7;
+}
+
+/* edit */
+.action-btn.edit {
+  background: #f59e0b;
+}
+.action-btn.edit:hover {
+  background: #d97706;
+}
+
+/* delete */
+.action-btn.delete {
+  background: #ef4444;
+}
+.action-btn.delete:hover {
+  background: #dc2626;
+}
+
+/* DANGER MODERN */
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444, #f87171);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+
+  box-shadow: 0 4px 10px rgba(239,68,68,0.3);
+  transition: all 0.2s ease;
+}
+
+/* hover */
+.btn-danger:hover {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(239,68,68,0.4);
+}
+
+/* klik */
+.btn-danger:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 6px rgba(239,68,68,0.3);
+}
+
+/* optional focus (aksesibilitas) */
+.btn-danger:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.3);
+}
+
+.multi-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.multi-row input {
+  flex: 1;
+}
+
+.level {
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.level:hover {
+  background: #06020f;
+}
+
+.kelas {
+  background: #2563eb;
+  color: white;
+}
+
+.mapel {
+  background: #1d4ed8;
+  color: white;
+  margin-left: 10px;
+}
+
+.bab {
+  background: #3b82f6;
+  color: white;
+  margin-left: 20px;
+}
+
+.content {
+  display: none;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 2px solid #e2e8f0;
+}
+
+.materi-item {
+  margin: 6px 0;
+  padding: 10px;
+  background: white;
+  border-radius: 10px;
+  border-left: 4px solid #2563eb;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.materi-item:hover {
+  background: #eff6ff;
+  transform: translateX(4px);
+}
+
+#addStudentList {
+
+  max-height: 300px;
+  overflow-y: auto;
+
+  padding-left: 4px;
+  margin-top: 12px;
+
+}
+
+#addStudentList::-webkit-scrollbar {
+  width: 6px;
+}
+
+#addStudentList::-webkit-scrollbar-thumb {
+  background: #cbd5f5;
+  border-radius: 10px;
+}
+
+/* =========================
+   BUTTON TAMBAH SISWA MODERN
+========================= */
+
+.add-student-box {
+
+  margin-top: 10px;
+  margin-bottom: 6px;
+
+}
+
+.btn-add-student {
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #10b981,
+    #34d399
+  );
+
+  color: white;
+
+  border: none;
+
+  padding: 12px 16px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  width: 100%;
+
+  text-align: left;
+
+  box-shadow:
+    0 6px 16px rgba(16,185,129,0.35);
+
+  transition: 0.2s;
+
+}
+
+/* hover */
+
+.btn-add-student:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 22px rgba(16,185,129,0.4);
+
+}
+
+/* icon */
+
+.btn-add-student .icon {
+
+  font-size: 22px;
+
+}
+
+/* text */
+
+.btn-add-student .text {
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+.btn-add-student small {
+
+  font-size: 12px;
+
+  opacity: 0.9;
+
+}
+
+.toggle-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.toggle-btn:hover {
+  background: #1e40af;
+}
+
+.subbab-item{
+  display: flex;
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+
+.exercise-list{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-top: 10px;
+  margin-left: 24px;
+}
+
+.exercise-item{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* tombol preview kecil */
+.preview-btn {
+  width: auto;
+
+  padding: 6px 10px;
+  min-width: unset;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #0ea5e9;
+  color: white;
+
+  border: none;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+.preview-btn:hover {
+  background: #0284c7;
+}

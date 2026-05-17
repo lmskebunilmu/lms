@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Material Detail</title>
+
+  <style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f7fb;
+    margin: 0;
+    padding: 0;
+    color: #1f2937;
+  }
+
+  /* 🔥 FULL WIDTH SYSTEM */
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* TOP BAR SPACING BACK BUTTON */
+  .topbar {
+    padding: 12px 16px;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .back {
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: bold;
+  }
+
+  /* CONTENT AREA */
+  .content-wrapper {
+    max-width: 1100px;
+    margin: auto;
+    padding: 16px;
+  }
+
+  /* TITLE */
+  h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  /* CARD STYLE */
+  .card {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    margin-top: 16px;
+  }
+
+  iframe {
+    width: 100%;
+    border-radius: 10px;
+    margin: 12px 0;
+  }
+
+  /* 🔥 MOBILE OPTIMIZATION */
+  @media (max-width: 768px) {
+
+    .content-wrapper {
+      padding: 12px;
+    }
+
+    h1 {
+      font-size: 20px;
+    }
+
+    .card {
+      padding: 14px;
+      border-radius: 10px;
+    }
+  }
+
+  /* 🔥 EXTRA SMALL PHONE */
+  @media (max-width: 480px) {
+
+    h1 {
+      font-size: 18px;
+    }
+
+    .content-wrapper {
+      padding: 10px;
+    }
+  }
+
+</style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <a class="back" href="javascript:history.back()">← Kembali</a>
+
+    <div id="content" class="loading">
+      Loading material...
+    </div>
+
+  </div>
+
+  <script type="module">
+
+    import { db } from "../firebase/firebase-config.js";
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const id = new URLSearchParams(window.location.search).get("id");
+    const container = document.getElementById("content");
+
+    /* =========================
+       RENDER CONTENT (SAMA DENGAN SUPERADMIN)
+    ========================= */
+    function generateContent(input) {
+
+      let output = input || "";
+
+      // =====================
+      // YouTube
+      // =====================
+      output = output.replace(
+        /(https?:\/\/(www\.)?(youtube\.com|youtu\.be)\/[^\s<]+)/g,
+        (url) => {
+          let videoId = "";
+          if (url.includes("watch?v=")) videoId = url.split("watch?v=")[1].split("&")[0];
+          else if (url.includes("youtu.be/")) videoId = url.split("youtu.be/")[1].split("?")[0];
+
+          return `<iframe height="315" src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
+        }
+      );
+
+      // =====================
+      // Google Drive
+      // =====================
+      output = output.replace(
+        /https?:\/\/drive\.google\.com\/file\/d\/([^\/]+)\/view[^\s<]*/g,
+        (match, fileId) => {
+          return `<iframe height="500" src="https://drive.google.com/file/d/${fileId}/preview"></iframe>`;
+        }
+      );
+
+      // =====================
+      // PDF
+      // =====================
+      output = output.replace(
+        /(https?:\/\/[^\s<]+\.pdf)/g,
+        (url) => `<iframe height="500" src="${url}"></iframe>`
+      );
+
+      // remove script
+      output = output.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "");
+
+      return `
+        <div class="card">
+          ${output}
+        </div>
+      `;
+    }
+
+    /* =========================
+       LOAD MATERIAL
+    ========================= */
+    async function loadMaterial() {
+
+      if (!id) {
+        container.innerHTML = `<div class="error">ID material tidak ditemukan</div>`;
+        return;
+      }
+
+      try {
+
+        const snap = await getDoc(doc(db, "materials", id));
+
+        if (!snap.exists()) {
+          container.innerHTML = `<div class="error">Material tidak ditemukan</div>`;
+          return;
+        }
+
+        const data = snap.data();
+
+        container.innerHTML = `
+          <h1>${data.title || "Untitled"}</h1>
+          <p><b>Chapter:</b> ${data.chapter || "-"}</p>
+          <p><b>Sub Chapter:</b> ${data.subChapter || "-"}</p>
+          <hr/>
+          <div id="materialBody"></div>
+        `;
+
+        document.getElementById("materialBody").innerHTML =
+          generateContent(data.content);
+
+        // MathJax render
+        if (window.MathJax) {
+          MathJax.typeset();
+        }
+
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = `<div class="error">Gagal memuat material</div>`;
+      }
+    }
+
+    loadMaterial();
+
+  </script>
+
+  <!-- MathJax -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+</html>

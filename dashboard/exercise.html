@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Latihan Siswa</title>
+
+
+<!-- MathJax -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']]
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  font-family: Arial, sans-serif;
+  background:#f3f4f6;
+  margin:0;
+  color:#111827;
+}
+
+.wrapper{
+  display:flex;
+}
+
+.main{
+  flex:1;
+  padding:20px;
+}
+
+.card{
+  background:white;
+  border-radius:20px;
+  padding:24px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.06);
+}
+
+.page-title{
+  font-size:24px;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+.question-card{
+  background:white;
+  margin-bottom:20px;
+  padding:20px;
+  border-radius:18px;
+  border:1px solid #e5e7eb;
+  box-shadow:0 2px 10px rgba(0,0,0,0.04);
+}
+
+.question-title{
+  font-size:17px;
+  line-height:1.8;
+  margin-bottom:16px;
+}
+
+/* OPTION */
+.option{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin:10px 0;
+  padding:14px;
+  border-radius:14px;
+  background:#f9fafb;
+  cursor:pointer;
+  transition:.2s;
+  border:1px solid #e5e7eb;
+}
+
+.option:hover{
+  background:#eef2ff;
+  border-color:#6366f1;
+}
+
+.option input{
+  margin-top:4px;
+}
+
+/* INPUT */
+input[type="text"]{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #d1d5db;
+  font-size:15px;
+}
+
+/* BUTTON */
+.btn-check,
+.btn-explain{
+  border:none;
+  padding:11px 18px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:bold;
+  margin-top:14px;
+  margin-right:10px;
+  transition:.2s;
+}
+
+.btn-check{
+  background:#2563eb;
+  color:white;
+}
+
+.btn-check:hover{
+  background:#1d4ed8;
+}
+
+.btn-explain{
+  background:#16a34a;
+  color:white;
+}
+
+.btn-explain:hover{
+  background:#15803d;
+}
+
+/* RESULT */
+.result{
+  margin-top:14px;
+  font-weight:bold;
+}
+
+/* EXPLANATION */
+.explanation{
+  margin-top:15px;
+  background:#f9fafb;
+  border-left:4px solid #2563eb;
+  padding:14px;
+  border-radius:12px;
+  line-height:1.8;
+}
+
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:12px;
+  overflow:hidden;
+  border-radius:12px;
+}
+
+table td,
+table th{
+  border:1px solid #d1d5db;
+  padding:10px;
+  text-align:center;
+}
+
+table th{
+  background:#2563eb;
+  color:white;
+}
+
+/* IMAGE */
+img{
+  max-width:100%;
+  border-radius:12px;
+}
+
+/* LATEX */
+.MathJax{
+  font-size:1.05em !important;
+}
+
+/* MATCH */
+.match-wrapper{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  margin-top:20px;
+}
+
+.match-column{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.match-item{
+  background:white;
+  border:2px solid #d1d5db;
+  border-radius:14px;
+  padding:14px;
+  cursor:pointer;
+  transition:.2s;
+  user-select:none;
+  position:relative;
+  z-index:2;
+}
+
+.match-item:hover{
+  background:#eef2ff;
+}
+
+.match-item.selected{
+  border-color:#2563eb;
+  background:#dbeafe;
+}
+
+.match-item.connected{
+  border-color:#16a34a;
+  background:#dcfce7;
+}
+
+.match-lines{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:1;
+}
+
+.multi-wrapper{
+  margin-top:15px;
+}
+
+.multi-input{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #d1d5db;
+  font-size:15px;
+}
+
+@media(max-width:768px){
+
+  .main{
+    padding:12px;
+  }
+
+  .card{
+    padding:16px;
+  }
+
+  .question-card{
+    padding:16px;
+  }
+
+  .question-title{
+    font-size:15px;
+  }
+
+  .match-wrapper{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .match-item{
+    padding:10px;
+    font-size:13px;
+  }
+
+}
+
+</style>
+<body>
+
+<div class="wrapper">
+
+  <div id="sidebar-container"></div>
+
+  <div class="main">
+
+    <div id="header-container"></div>
+
+    <div class="card">
+
+      <div class="page-title">📝 Latihan Saya</div>
+
+      <div id="exerciseContainer">Loading...</div>
+
+    </div>
+
+  </div>
+</div>
+
+<script type="module" src="./exercise-siswa.js"></script>
+
+</body>
+</html>
