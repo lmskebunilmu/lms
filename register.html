@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Register Student</title>
+
+<style>
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f1f5f9;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.card{
+  width:350px;
+  background:white;
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+h2{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+input, select{
+  width:100%;
+  padding:12px;
+  margin-bottom:14px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  box-sizing:border-box;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#2563eb;
+  color:white;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#1d4ed8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <h2>Pendaftaran Student</h2>
+
+  <input type="text" id="name" placeholder="Nama Lengkap">
+
+<input type="email" id="email" placeholder="Email">
+
+<input type="password" id="password" placeholder="Password">
+  <select id="level">
+  <option value="">Pilih Level</option>
+
+  <option value="SD">SD</option>
+  <option value="SMP">SMP</option>
+  <option value="SMA">SMA</option>
+</select>
+
+  <select id="curriculum">
+    <option value="">Pilih Kurikulum</option>
+    <option value="Nasional">Nasional</option>
+    <option value="Internasional">Internasional</option>
+  </select>
+
+  <button onclick="register()">
+    Daftar
+  </button>
+
+</div>
+
+<script type="module">
+
+import { auth, db } from "./firebase/firebase-config.js";
+
+import {
+  createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  doc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+async function register(){
+
+  let name =
+  document.getElementById("name").value;
+
+  let email =
+  document.getElementById("email").value.trim();
+
+  let password =
+  document.getElementById("password").value;
+
+  let level =
+  document.getElementById("level").value;
+
+  let curriculum =
+  document.getElementById("curriculum").value;
+
+  try {
+
+    let userCredential =
+    await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    let uid =
+    userCredential.user.uid;
+
+    await setDoc(
+      doc(db, "users", uid),
+      {
+
+        uid,
+        name,
+        email,
+
+        role: "student",
+
+        level,
+        curriculum,
+
+        createdAt:
+        new Date()
+
+      }
+    );
+
+    alert("Pendaftaran berhasil");
+
+    window.location.href =
+    "login.html";
+
+  }
+
+  catch(error){
+
+    alert(error.message);
+
+  }
+
+}
+window.register = register;
+
+</script>
+
+</body>
+</html>
