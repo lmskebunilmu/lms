@@ -141,7 +141,7 @@ function goBookingStudent() {
     window.role === "student"
   ) {
 
-    navigate("../../modules/booking-student/booking-student.html");
+    navigate("../modules/booking-student/booking-student.html");
 
   }
 
@@ -250,7 +250,7 @@ function logout() {
     signOut(auth)
       .then(() => {
 
-        window.location = "/login.html";
+        window.location = "../login.html";
 
       })
       .catch(err => alert(err.message));
