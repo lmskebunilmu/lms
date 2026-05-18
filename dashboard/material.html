@@ -6,6 +6,10 @@
   <title>Material Detail</title>
 
   <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Segoe UI', sans-serif;
   background: #f4f7fb;
@@ -13,14 +17,13 @@ body {
   padding: 0;
   color: #1f2937;
 
-  /* biar mobile gak zoom aneh */
   -webkit-text-size-adjust: 100%;
   touch-action: manipulation;
   overflow-x: hidden;
 }
 
 /* =========================
-   FULL WIDTH LAYOUT
+   FULL WIDTH CONTAINER
 ========================= */
 .container {
   width: 100%;
@@ -52,7 +55,6 @@ body {
   font-weight: bold;
 }
 
-/* FULLSCREEN BUTTON */
 #fsBtn {
   background: #2563eb;
   color: white;
@@ -64,7 +66,7 @@ body {
 }
 
 /* =========================
-   TITLE AREA
+   TITLE
 ========================= */
 h1 {
   font-size: 22px;
@@ -76,27 +78,29 @@ p {
 }
 
 /* =========================
-   CARD (FULL WIDTH FIX)
+   CARD FULL WIDTH
 ========================= */
 .card {
   background: white;
 
-  /* 🔥 FULL WIDTH FIX */
   width: 100%;
   margin: 0;
 
-  /* tetap enak dibaca */
   padding: 14px 16px;
 
-  border-radius: 0; /* full layar */
-  box-shadow: none; /* clean look */
+  border-radius: 0;
+  box-shadow: none;
+
+  overflow-x: hidden; /* 🔥 penting biar gak geser kanan */
 }
 
-/* optional spacing antar section */
+/* =========================
+   HORIZONTAL RULE
+========================= */
 hr {
-  margin: 10px 0;
   border: none;
   border-top: 1px solid #eee;
+  margin: 10px 0;
 }
 
 /* =========================
@@ -109,21 +113,25 @@ img {
 }
 
 /* =========================
-   IFRAME FIX (INI PALING PENTING)
+   🔥 FIX YOUTUBE / IFRAME (UTAMA)
 ========================= */
 iframe {
   width: 100%;
+  max-width: 100%;
   display: block;
+
   border: none;
   border-radius: 10px;
   margin: 12px 0;
 
-  /* stabil di semua device */
+  /* 🔥 FIX STABIL DI HP */
   aspect-ratio: 16 / 9;
   height: auto;
+
+  overflow: hidden;
 }
 
-/* drive / pdf lebih tinggi */
+/* Drive / PDF lebih tinggi */
 iframe[src*="drive"],
 iframe[src*="pdf"] {
   aspect-ratio: 4 / 3;
@@ -165,9 +173,9 @@ iframe[src*="pdf"] {
 
   iframe {
     border-radius: 8px;
+    aspect-ratio: 16 / 10; /* 🔥 lebih lega di HP */
   }
 }
-
 </style>
 </head>
 
