@@ -35,7 +35,7 @@ const classId = new URLSearchParams(window.location.search).get("id");
 /* =========================
    AUTH
 ========================= */
-
+let studentData = null;
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location = "../login.html";
@@ -45,6 +45,14 @@ onAuthStateChanged(auth, async (user) => {
   try {
     await loadLayout("student");
 
+// 1. ambil data user dari firestore
+const userSnap = await getDoc(doc(db, "users", user.uid));
+
+if (userSnap.exists()) {
+  studentData = userSnap.data();
+}
+
+    
 // tunggu header benar-benar ready
 await Promise.all([
   waitForElement("headerAvatarHeader"),
@@ -53,8 +61,8 @@ await Promise.all([
   waitForElement("headerSchoolName")
 ]);
 
-// ⬇️ WAJIB pakai await
-    
+loadProfile(); // 🔥 INI YANG HILANG
+
 await loadClassDetail(classId);
 await loadMaterials(classId);
     
@@ -63,7 +71,20 @@ await loadMaterials(classId);
     alert("Terjadi kesalahan");
   }
 });
+function loadProfile() {
+  const headerName = document.getElementById("headerNameHeader");
+  const headerAvatar = document.getElementById("headerAvatarHeader");
 
+  if (headerName) {
+    headerName.innerText = studentData?.name || "Student";
+  }
+
+  if (headerAvatar) {
+    headerAvatar.src =
+      studentData?.avatarURL ||
+      "../assets/images/default-avatar.png";
+  }
+}
 /* =========================
    LOAD CLASS DETAIL
 ========================= */
