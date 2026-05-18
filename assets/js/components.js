@@ -66,7 +66,9 @@ document.addEventListener("click", e => {
 // ==========================
 function navigate(url) {
   closeSidebar();
-  setTimeout(() => { window.location = url; }, 200);
+  setTimeout(() => {
+    window.location = "/LMS" + url;
+  }, 200);
 }
 
 function goDashboard() {
@@ -91,11 +93,8 @@ function goDashboard() {
 
   // 🔥 TAMBAH INI
   else if (window.role === "student") {
-
-    navigate("../../dashboard/student.html");
-
-  }
-
+  navigate("/dashboard/student.html");
+}
   else {
 
     navigate("../../dashboard/superadmin.html");
