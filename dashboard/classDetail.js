@@ -224,12 +224,12 @@ async function loadMaterials(classId) {
   }
 }
 
-window.openMaterial = function (id) {
-  window.location.href =
-    `/dashboard/material.html?id=${encodeURIComponent(id)}`;
-};
-
 window.openExercise = function (id) {
   window.location.href =
-    `/dashboard/exercise.html?id=${encodeURIComponent(id)}`;
+    `/LMS/dashboard/exercise.html?id=${encodeURIComponent(id)}`;
+};
+
+window.openMaterial = function (id) {
+  window.location.href =
+    `/LMS/dashboard/material.html?id=${encodeURIComponent(id)}`;
 };
