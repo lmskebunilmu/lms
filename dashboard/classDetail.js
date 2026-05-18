@@ -1,3 +1,5 @@
+
+
 import { auth, db } from "../firebase/firebase-config.js";
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -223,9 +225,11 @@ async function loadMaterials(classId) {
 }
 
 window.openMaterial = function (id) {
-  window.location.href = `material.html?id=${id}`;
+  window.location.href =
+    `/dashboard/material.html?id=${encodeURIComponent(id)}`;
 };
 
 window.openExercise = function (id) {
-  window.location.href = `exercise.html?id=${id}`;
+  window.location.href =
+    `/dashboard/exercise.html?id=${encodeURIComponent(id)}`;
 };
