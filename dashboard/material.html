@@ -66,6 +66,29 @@
     margin: 12px 0;
   }
 
+    .fs-btn {
+  float: right;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.fs-btn:hover {
+  background: #1e40af;
+}
+
+/* biar topbar tetap rapi */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
   /* 🔥 MOBILE OPTIMIZATION */
   @media (max-width: 768px) {
 
@@ -113,6 +136,10 @@
 
     <div class="topbar">
   <a class="back" href="javascript:history.back()">← Kembali</a>
+
+  <button id="fsBtn" class="fs-btn" onclick="toggleFullscreen()">
+    ⛶ Fullscreen
+  </button>
 </div>
     <div id="content" class="loading">
       Loading material...
@@ -219,6 +246,32 @@
         container.innerHTML = `<div class="error">Gagal memuat material</div>`;
       }
     }
+
+    window.toggleFullscreen = function () {
+  const el = document.documentElement;
+  const btn = document.getElementById("fsBtn");
+
+  if (!document.fullscreenElement) {
+    el.requestFullscreen().then(() => {
+      btn.innerText = "❌ Exit Fullscreen";
+    });
+  } else {
+    document.exitFullscreen().then(() => {
+      btn.innerText = "⛶ Fullscreen";
+    });
+  }
+};
+
+    document.addEventListener("fullscreenchange", () => {
+  const btn = document.getElementById("fsBtn");
+  if (!btn) return;
+
+  if (document.fullscreenElement) {
+    btn.innerText = "❌ Exit Fullscreen";
+  } else {
+    btn.innerText = "⛶ Fullscreen";
+  }
+});
 
     loadMaterial();
 
