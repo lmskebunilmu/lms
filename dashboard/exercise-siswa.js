@@ -357,19 +357,7 @@ function drawLines(qIndex) {
 }
 
 // ================= FULLSCREEN =================
-window.toggleFullscreen = function () {
-  const el = document.documentElement;
-
-  if (!document.fullscreenElement) {
-    el.requestFullscreen().then(() => {
-      document.body.classList.add("fs-mode");
-    });
-  } else {
-    document.exitFullscreen().then(() => {
-      document.body.classList.remove("fs-mode");
-    });
-  }
-};
+window.toggleFullscreen = function () { const el = document.documentElement; if (!document.fullscreenElement) { el.requestFullscreen(); } else { document.exitFullscreen(); } };
 
 document.addEventListener("fullscreenchange", () => {
   const btn = document.getElementById("fsBtn");
