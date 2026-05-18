@@ -361,9 +361,13 @@ window.toggleFullscreen = function () {
   const el = document.documentElement;
 
   if (!document.fullscreenElement) {
-    el.requestFullscreen();
+    el.requestFullscreen().then(() => {
+      document.body.classList.add("fs-mode");
+    });
   } else {
-    document.exitFullscreen();
+    document.exitFullscreen().then(() => {
+      document.body.classList.remove("fs-mode");
+    });
   }
 };
 
