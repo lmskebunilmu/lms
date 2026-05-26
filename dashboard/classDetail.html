@@ -261,7 +261,94 @@
   font-size:14px;
   color:#475569;
 }
+/* ======================
+   ACCORDION
+====================== */
 
+.chapter-box,
+.subchapter-box,
+.material-box{
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  overflow:hidden;
+  background:white;
+  margin-bottom:14px;
+}
+
+.chapter-header,
+.subchapter-header,
+.material-header,
+.exercise-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 18px;
+  cursor:pointer;
+  font-weight:700;
+  transition:0.2s;
+}
+
+.chapter-header:hover,
+.subchapter-header:hover,
+.material-header:hover,
+.exercise-header:hover{
+  background:#f8fafc;
+}
+
+.chapter-header{
+  background:#eff6ff;
+  font-size:18px;
+}
+
+.subchapter-header{
+  background:#f8fafc;
+  margin-left:14px;
+}
+
+.material-header{
+  margin-left:28px;
+}
+
+.exercise-header{
+  margin-left:42px;
+  font-size:14px;
+  color:#334155;
+}
+
+.chapter-content,
+.subchapter-content,
+.exercise-content{
+  display:none;
+  padding:10px;
+}
+
+.chapter-box.active .chapter-content,
+.subchapter-box.active .subchapter-content,
+.exercise-box.active .exercise-content{
+  display:block;
+}
+
+.exercise-item{
+  margin-left:58px;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.exercise-item:hover{
+  background:#eff6ff;
+}
+
+.arrow{
+  transition:0.2s;
+}
+
+.active > .chapter-header .arrow,
+.active > .subchapter-header .arrow,
+.active > .exercise-header .arrow{
+  transform:rotate(90deg);
+}
     /* ======================
        MOBILE
     ====================== */
