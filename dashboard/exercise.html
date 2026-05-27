@@ -11,8 +11,15 @@
 <script>
 window.MathJax = {
   tex: {
-    inlineMath: [['\\(', '\\)']],
-    displayMath: [['\\[', '\\]']]
+    inlineMath: [
+      ['$', '$'],
+      ['\\(', '\\)']
+    ],
+    displayMath: [
+      ['$$', '$$'],
+      ['\\[', '\\]']
+    ],
+    processEscapes: true
   }
 };
 </script>
@@ -38,10 +45,14 @@ body{
 
 .main{
   flex:1;
-  padding:20px;
+  padding:24px;
+  display:flex;
+  justify-content:center;
 }
 
 .card{
+  width:100%;
+  max-width:1000px;
   background:white;
   border-radius:20px;
   padding:24px;
