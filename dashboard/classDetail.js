@@ -261,49 +261,66 @@ Object.keys(grouped)
 
         <div class="material-box">
 
-          <!-- MATERIAL -->
-          <div
-            class="material-header"
-            onclick="openMaterial('${m.id}')"
-          >
-            <div>
-              <div style="font-weight:700">
-                📚 ${m.title}
-              </div>
+  <!-- MATERIAL -->
+  <div class="material-header">
+    <div>
+      <div style="font-weight:700">
+        📚 ${m.title}
+      </div>
 
-              <div style="
-                font-size:13px;
-                color:#64748b;
-                margin-top:4px;
-              ">
-                ${m.description || ""}
-              </div>
-            </div>
+      <div style="
+        font-size:13px;
+        color:#64748b;
+        margin-top:4px;
+      ">
+        ${m.description || ""}
+      </div>
+    </div>
+
+    <span class="arrow">▶</span>
+  </div>
+
+  <div class="material-content">
+
+    <!-- BUKA MATERI -->
+    <div
+      class="exercise-item"
+      onclick="openMaterial('${m.id}')"
+      style="
+        background:#eff6ff;
+        font-weight:600;
+      "
+    >
+      📖 Buka Materi
+    </div>
+
+    <!-- EXERCISE -->
+    <div class="exercise-box">
+
+      <div class="exercise-header">
+        <span>
+          🧪 Exercises
+          (${exercises.length})
+        </span>
+
+        <span class="arrow">▶</span>
+      </div>
+
+      <div class="exercise-content">
+
+        ${exHTML || `
+          <div class="exercise-item">
+            Belum ada exercise
           </div>
+        `}
 
-          <!-- EXERCISE -->
-          <div class="exercise-box">
+      </div>
 
-            <div class="exercise-header">
-              <span>
-                🧪 Exercises
-                (${exercises.length})
-              </span>
+    </div>
 
-              <span class="arrow">▶</span>
-            </div>
+  </div>
 
-            <div class="exercise-content">
-              ${exHTML || `
-                <div class="exercise-item">
-                  Belum ada exercise
-                </div>
-              `}
-            </div>
-
-          </div>
-
-        </div>
+</div>
       `;
 
     });
@@ -348,6 +365,16 @@ document.addEventListener("click", (e) => {
 
   if (subHeader) {
     subHeader.parentElement
+      .classList.toggle("active");
+  }
+
+  // MATERIAL
+  const materialHeader =
+    e.target.closest(".material-header");
+
+  if (materialHeader) {
+
+    materialHeader.parentElement
       .classList.toggle("active");
   }
 
